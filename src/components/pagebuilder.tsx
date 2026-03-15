@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react';
 import type { PageBuilderBlocks } from '@/types';
 import { HeroBlock } from './blocks/hero-block';
+import { CloudBlock } from './blocks/cloud-block';
+import { CtaBlock } from './blocks/cta-block';
 
 type BlockEntry = NonNullable<PageBuilderBlocks>[number];
 
@@ -17,6 +19,8 @@ interface PageBuilderProps {
 // Register block components here as they are implemented
 const BLOCK_COMPONENTS: Partial<BlockComponentMap> = {
   heroBlock: HeroBlock,
+  ctaBlock: CtaBlock,
+  cloudBlock: CloudBlock,
 };
 
 function renderBlock(block: BlockEntry, map: Partial<BlockComponentMap>) {

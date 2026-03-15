@@ -189,6 +189,14 @@ const ctaBlockFragment = /* groq */ `
   }
 `;
 
+const cloudBlockFragment = /* groq */ `
+  _type == "cloudBlock" => {
+    logos[] {
+      ${customImageFragment}
+    }
+  }
+`;
+
 // ─── Page Builder Fragment ────────────────────────────────────────────────────
 
 /**
@@ -209,7 +217,8 @@ export const pageBuilderFragment = /* groq */ `
     ${heroBlockFragment},
     ${mediaBlockFragment},
     ${mediaGridBlockFragment},
-    ${ctaBlockFragment}
+    ${ctaBlockFragment},
+    ${cloudBlockFragment}
   }
 `;
 
