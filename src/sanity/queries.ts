@@ -164,8 +164,15 @@ const mediaGridBlockFragment = /* groq */ `
     eyebrow,
     title,
     subtitle,
-    mediaItems[]-> {
-      ${customImageFragment}
+    mediaItems {
+      images[] {
+        image {
+          ${customImageFragment}
+        },
+        link {
+          ${linkFragment}
+        }
+      }
     },
     columns
   }

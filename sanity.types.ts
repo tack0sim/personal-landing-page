@@ -15,6 +15,15 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type MediaItems = {
+  images?: Array<{
+    image?: CustomImage;
+    link?: Link;
+    _type: "imageItem";
+    _key: string;
+  }>;
+};
+
 export type CloudBlock = {
   _type: "cloudBlock";
   logos?: Array<
@@ -44,11 +53,7 @@ export type MediaGridBlock = {
   eyebrow?: string;
   title?: string;
   subtitle?: string;
-  mediaItems?: Array<
-    {
-      _key: string;
-    } & CustomImage
-  >;
+  mediaItems?: MediaItems;
   columns?: 2 | 3 | 4;
 };
 
@@ -329,6 +334,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | MediaItems
   | CloudBlock
   | CtaBlock
   | MediaGridBlock
@@ -358,7 +364,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/queries.ts
 // Variable: HOMEPAGE_QUERY
-// Query: *[_type == "homepage"][0] {    _id,    title,      "pageBuilder": pageBuilder[] {    _type,    _key,      _type == "heroBlock" => {    eyebrow,    title,    subtitle,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    }  },      _type == "mediaBlock" => {    eyebrow,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    richTextWithImage[] {        ...,  _type == "customImage" => {      image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt  },  markDefs[] {    ...,    _type == "link" => {        type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab    }  }    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment  },      _type == "mediaGridBlock" => {    eyebrow,    title,    subtitle,    mediaItems[]-> {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    columns  },      _type == "ctaBlock" => {    eyebrow,    title,    subtitle,    richTextCore[] {        ...    },    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment  },      _type == "cloudBlock" => {    logos[] {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  }  },      "seo": {    "title": coalesce(seoTitle, title, ""),    "description": coalesce(seoDescription, ""),    "noIndex": noIndex == true  },  "og": {    "title": coalesce(ogTitle, seoTitle, title, ""),    "description": coalesce(ogDescription, seoDescription, ""),    "image": ogImage {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  }  }
+// Query: *[_type == "homepage"][0] {    _id,    title,      "pageBuilder": pageBuilder[] {    _type,    _key,      _type == "heroBlock" => {    eyebrow,    title,    subtitle,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    }  },      _type == "mediaBlock" => {    eyebrow,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    richTextWithImage[] {        ...,  _type == "customImage" => {      image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt  },  markDefs[] {    ...,    _type == "link" => {        type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab    }  }    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment  },      _type == "mediaGridBlock" => {    eyebrow,    title,    subtitle,    mediaItems {      images[] {        image {            image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt        },        link {            type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab        }      }    },    columns  },      _type == "ctaBlock" => {    eyebrow,    title,    subtitle,    richTextCore[] {        ...    },    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment  },      _type == "cloudBlock" => {    logos[] {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  }  },      "seo": {    "title": coalesce(seoTitle, title, ""),    "description": coalesce(seoDescription, ""),    "noIndex": noIndex == true  },  "og": {    "title": coalesce(ogTitle, seoTitle, title, ""),    "description": coalesce(ogDescription, seoDescription, ""),    "image": ogImage {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  }  }
 export type HOMEPAGE_QUERY_RESULT = {
   _id: string;
   title: string | null;
@@ -554,7 +560,33 @@ export type HOMEPAGE_QUERY_RESULT = {
         eyebrow: string | null;
         title: string | null;
         subtitle: string | null;
-        mediaItems: Array<null> | null;
+        mediaItems: {
+          images: Array<{
+            image: {
+              image: {
+                asset: {
+                  _id: string;
+                  url: string | null;
+                  metadata: {
+                    lqip: string | null;
+                    dimensions: {
+                      width: number | null;
+                      height: number | null;
+                    } | null;
+                  } | null;
+                } | null;
+                hotspot: SanityImageHotspot | null;
+                crop: SanityImageCrop | null;
+              } | null;
+              alt: string | null;
+            } | null;
+            link: {
+              type: "external" | null;
+              href: string | "#" | null;
+              openInNewTab: boolean | null;
+            } | null;
+          }> | null;
+        } | null;
         columns: 2 | 3 | 4 | null;
       }
   > | null;
@@ -648,7 +680,7 @@ export type SANITY_IMAGE_TYPE_QUERY_RESULT = null | {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "homepage"][0] {\n    _id,\n    title,\n    \n  "pageBuilder": pageBuilder[] {\n    _type,\n    _key,\n    \n  _type == "heroBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    }\n  }\n,\n    \n  _type == "mediaBlock" => {\n    eyebrow,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    richTextWithImage[] {\n      \n  ...,\n  _type == "customImage" => {\n    \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n  },\n  markDefs[] {\n    ...,\n    _type == "link" => {\n      \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n    }\n  }\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment\n  }\n,\n    \n  _type == "mediaGridBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    mediaItems[]-> {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    columns\n  }\n,\n    \n  _type == "ctaBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    richTextCore[] {\n      \n  ...\n\n    },\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment\n  }\n,\n    \n  _type == "cloudBlock" => {\n    logos[] {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n,\n    \n  "seo": {\n    "title": coalesce(seoTitle, title, ""),\n    "description": coalesce(seoDescription, ""),\n    "noIndex": noIndex == true\n  },\n  "og": {\n    "title": coalesce(ogTitle, seoTitle, title, ""),\n    "description": coalesce(ogDescription, seoDescription, ""),\n    "image": ogImage {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n': HOMEPAGE_QUERY_RESULT;
+    '\n  *[_type == "homepage"][0] {\n    _id,\n    title,\n    \n  "pageBuilder": pageBuilder[] {\n    _type,\n    _key,\n    \n  _type == "heroBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    }\n  }\n,\n    \n  _type == "mediaBlock" => {\n    eyebrow,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    richTextWithImage[] {\n      \n  ...,\n  _type == "customImage" => {\n    \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n  },\n  markDefs[] {\n    ...,\n    _type == "link" => {\n      \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n    }\n  }\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment\n  }\n,\n    \n  _type == "mediaGridBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    mediaItems {\n      images[] {\n        image {\n          \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n        },\n        link {\n          \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n        }\n      }\n    },\n    columns\n  }\n,\n    \n  _type == "ctaBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    richTextCore[] {\n      \n  ...\n\n    },\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment\n  }\n,\n    \n  _type == "cloudBlock" => {\n    logos[] {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n,\n    \n  "seo": {\n    "title": coalesce(seoTitle, title, ""),\n    "description": coalesce(seoDescription, ""),\n    "noIndex": noIndex == true\n  },\n  "og": {\n    "title": coalesce(ogTitle, seoTitle, title, ""),\n    "description": coalesce(ogDescription, seoDescription, ""),\n    "image": ogImage {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n': HOMEPAGE_QUERY_RESULT;
     '\n  *[_type == "settings"][0] {\n    _id,\n    siteTitle,\n    \n  "seo": {\n    "title": coalesce(seoTitle, title, ""),\n    "description": coalesce(seoDescription, ""),\n    "noIndex": noIndex == true\n  },\n  "og": {\n    "title": coalesce(ogTitle, seoTitle, title, ""),\n    "description": coalesce(ogDescription, seoDescription, ""),\n    "image": ogImage {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n': SETTINGS_QUERY_RESULT;
     '\n  *[_type == "homepage"][0] {\n      pageBuilder[] {\n        _type == "heroBlock" => {\n          image {\n            \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n          },\n        },\n      },\n    }.pageBuilder[0].image\n': SANITY_IMAGE_TYPE_QUERY_RESULT;
   }

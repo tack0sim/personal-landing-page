@@ -14,4 +14,17 @@ export const cloudBlock = defineType({
       description: 'Add logo images to display in the infinite scroll strip.',
     }),
   ],
+  preview: {
+    select: {
+      logos: 'logos',
+    },
+    prepare({ logos }) {
+      const numberOfLogos = logos?.length || 0;
+      return {
+        title: 'Cloud Block',
+        subtitle: `(${numberOfLogos} logos)`,
+        media: CloudIcon,
+      };
+    },
+  },
 });

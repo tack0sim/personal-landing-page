@@ -3,6 +3,7 @@ import type { PageBuilderBlocks } from '@/types';
 import { HeroBlock } from './blocks/hero-block';
 import { CloudBlock } from './blocks/cloud-block';
 import { CtaBlock } from './blocks/cta-block';
+import { MediaGridBlock } from './blocks/media-grid-block';
 
 type BlockEntry = NonNullable<PageBuilderBlocks>[number];
 
@@ -21,6 +22,7 @@ const BLOCK_COMPONENTS: Partial<BlockComponentMap> = {
   heroBlock: HeroBlock,
   ctaBlock: CtaBlock,
   cloudBlock: CloudBlock,
+  mediaGridBlock: MediaGridBlock,
 };
 
 function renderBlock(block: BlockEntry, map: Partial<BlockComponentMap>) {

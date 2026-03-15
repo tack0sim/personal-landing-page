@@ -7,9 +7,10 @@ export const mediaGridBlock = defineType({
   icon: GridIcon,
   fields: [
     defineField({
-      name: "eyebrow",
-      type: "string",
-      description: "A small piece of text above the title, often used for categorization or emphasis.", 
+      name: 'eyebrow',
+      type: 'string',
+      description:
+        'A small piece of text above the title, often used for categorization or emphasis.',
     }),
     defineField({
       name: 'title',
@@ -22,14 +23,34 @@ export const mediaGridBlock = defineType({
     }),
     defineField({
       name: 'mediaItems',
-      type: 'array',
-      of: [{ type: 'customImage' }],
-      description:
-        'Add media items to the grid.',
-      validation: (Rule) =>
-        Rule.required()
-          .min(1)
-          .error('Please add at least one media item to the grid.'),
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'images',
+          type: 'array',
+          of: [
+            {
+              name: 'imageItem',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'image',
+                  type: 'customImage',
+                }),
+                defineField({
+                  name: 'link',
+                  type: 'link',
+                }),
+              ],
+            },
+          ],
+          description: 'Add media items to the grid.',
+          validation: (Rule) =>
+            Rule.required()
+              .min(1)
+              .error('Please add at least one media item to the grid.'),
+        }),
+      ],
     }),
     defineField({
       name: 'columns',
