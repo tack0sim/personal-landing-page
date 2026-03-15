@@ -22,7 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${metadata.title} | ${settings.siteTitle}`
     : settings?.siteTitle;
 
-  const imageUrl = metadata?.og?.image && urlFor(metadata.og.image).url();
+  const imageUrl =
+    metadata?.og?.image?.image && urlFor(metadata.og.image.image).url();
   const dimensions =
     metadata?.og?.image?.image && resolveImageDimensions(metadata?.og?.image);
 
