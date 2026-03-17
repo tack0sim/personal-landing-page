@@ -18,7 +18,7 @@ export function HeroBlock({
   buttons,
 }: PageBuilderBlockType<'heroBlock'>) {
   return (
-    <Section className="min-h-[50vh]">
+    <Section>
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Text Content */}
