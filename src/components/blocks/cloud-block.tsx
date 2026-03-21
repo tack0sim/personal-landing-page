@@ -9,7 +9,7 @@ import { Container } from '../ui/container';
 export function CloudBlock({ logos }: PageBuilderBlockType<'cloudBlock'>) {
   if (!logos?.length) return null;
 
-  const doubled = [...logos, ...logos, ...logos];
+  const doubled = [...logos, ...logos];
 
   return (
     <Section>
