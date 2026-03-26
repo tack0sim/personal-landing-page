@@ -2,12 +2,13 @@
 
 import { cn } from '@/lib/utils';
 import type { PageBuilderBlockType } from '@/types';
-import { motion } from 'framer-motion';
+import { motion, number } from 'framer-motion';
 import { stegaClean } from 'next-sanity';
 import { SanityImage } from '../sanity-image';
 import { Container } from '../ui/container';
 import { Section } from '../ui/section';
 import Link from 'next/link';
+import { Badge } from '../ui/badge';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -74,20 +75,40 @@ export function MediaGridBlock({
                     rel="noopener noreferrer"
                   >
                     {item.image?.image && (
+                      <>
+                        <SanityImage
+                          image={item.image}
+                          fill
+                          className="object-cover"
+                        />
+                        {item.badgeText && (
+                          <Badge
+                            variant={item.badgeVariant}
+                            className="absolute bottom-4 left-4 font-medium"
+                          >
+                            {item.badgeText}
+                          </Badge>
+                        )}
+                      </>
+                    )}
+                  </Link>
+                ) : (
+                  item.image?.image && (
+                    <>
                       <SanityImage
                         image={item.image}
                         fill
                         className="object-cover"
                       />
-                    )}
-                  </Link>
-                ) : (
-                  item.image?.image && (
-                    <SanityImage
-                      image={item.image}
-                      fill
-                      className="object-cover"
-                    />
+                      {item.badgeText && (
+                        <Badge
+                          variant={item.badgeVariant}
+                          className="absolute bottom-4 left-4 font-medium"
+                        >
+                          {item.badgeText}
+                        </Badge>
+                      )}
+                    </>
                   )
                 )}
               </motion.div>

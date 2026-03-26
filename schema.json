@@ -28,6 +28,34 @@
                   },
                   "optional": true
                 },
+                "badgeText": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": true
+                },
+                "badgeVariant": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "default"
+                      },
+                      {
+                        "type": "string",
+                        "value": "secondary"
+                      },
+                      {
+                        "type": "string",
+                        "value": "outline"
+                      }
+                    ]
+                  },
+                  "optional": true
+                },
                 "_type": {
                   "type": "objectAttribute",
                   "value": {

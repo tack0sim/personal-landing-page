@@ -22,7 +22,7 @@ export const cloudBlock = defineType({
       const numberOfLogos = logos?.length || 0;
       return {
         title: 'Cloud Block',
-        subtitle: `(${numberOfLogos} logos)`,
+        subtitle: `${numberOfLogos} logos`,
         media: CloudIcon,
       };
     },

@@ -20,11 +20,12 @@ export const customImage = defineType({
   ],
   preview: {
     select: {
+      title: 'alt',
       image: 'image',
     },
-    prepare({ image }) {
+    prepare({ title, image }) {
       return {
-        title: 'Custom Image',
+        title: title ?? 'Custom Image',
         media: image,
       };
     },

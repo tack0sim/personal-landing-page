@@ -41,7 +41,42 @@ export const mediaGridBlock = defineType({
                   name: 'link',
                   type: 'link',
                 }),
+                defineField({
+                  name: 'badgeText',
+                  type: 'string',
+                  description:
+                    'Text to display in a badge overlay on the image.',
+                }),
+                defineField({
+                  name: 'badgeVariant',
+                  type: 'string',
+                  description:
+                    'Variant for the badge (e.g., "default", "secondary", "outline").',
+                  options: {
+                    list: [
+                      { title: 'Default', value: 'default' },
+                      { title: 'Secondary', value: 'secondary' },
+                      { title: 'Outline', value: 'outline' },
+                    ],
+                    layout: 'radio',
+                  },
+                  initialValue: 'default',
+                }),
               ],
+              preview: {
+                select: {
+                  title: 'image.alt',
+                  badge: 'badgeText',
+                  media: 'image.image',
+                },
+                prepare({ title, badge, media }) {
+                  return {
+                    title: title ? `Media Grid: ${title}` : 'Media Grid Item',
+                    subtitle: `Badge: ${badge}`,
+                    media,
+                  };
+                },
+              },
             },
           ],
           description: 'Add media items to the grid.',
@@ -69,4 +104,18 @@ export const mediaGridBlock = defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      mediaItems: 'mediaItems',
+    },
+    prepare({ title, mediaItems }) {
+      const numberOfGridItems = mediaItems?.images?.length ?? 0;
+      return {
+        title: title ?? 'Untitled Media Grid Block',
+        subtitle: `${numberOfGridItems} items`,
+        media: GridIcon,
+      };
+    },
+  },
 });

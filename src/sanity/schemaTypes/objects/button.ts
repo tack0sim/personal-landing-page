@@ -1,8 +1,10 @@
+import { LinkIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 
 export const button = defineType({
   name: 'button',
   type: 'object',
+  icon: LinkIcon,
   description: 'A clickable button element',
   fields: [
     defineField({
@@ -44,4 +46,17 @@ export const button = defineType({
       initialValue: 'medium',
     }),
   ],
+  preview: {
+    select: {
+      title: 'label',
+      newTab: 'link.openInNewTab',
+    },
+    prepare({ title, newTab }) {
+      return {
+        title: title ?? 'Untitled Button',
+        subtitle: newTab ? 'Opens in new tab' : 'Opens in same tab',
+        media: LinkIcon,
+      };
+    },
+  },
 });

@@ -9,9 +9,10 @@ export const heroBlock = defineType({
   description: 'The hero section of a page',
   fields: [
     defineField({
-      name: "eyebrow",
-      type: "string",
-      description: "A small piece of text above the title, often used for categorization or emphasis.",
+      name: 'eyebrow',
+      type: 'string',
+      description:
+        'A small piece of text above the title, often used for categorization or emphasis.',
     }),
     defineField({
       name: 'title',
@@ -29,4 +30,17 @@ export const heroBlock = defineType({
     }),
     buttonsField,
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image.image',
+    },
+    prepare({ title, media }) {
+      return {
+        title: title ?? 'Untitled Hero Block',
+        subtitle: 'Hero Block',
+        media,
+      };
+    },
+  },
 });

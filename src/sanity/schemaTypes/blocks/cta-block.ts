@@ -38,4 +38,17 @@ export const ctaBlock = defineType({
       initialValue: 'center',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image.image',
+    },
+    prepare({ title, media }) {
+      return {
+        title: title ?? 'Untitled CTA Block',
+        subtitle: 'CTA Block',
+        media,
+      };
+    },
+  },
 });

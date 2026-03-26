@@ -171,7 +171,9 @@ const mediaGridBlockFragment = /* groq */ `
         },
         link {
           ${linkFragment}
-        }
+        },
+        badgeText,
+        badgeVariant
       }
     },
     columns
