@@ -101,9 +101,7 @@ export function HeroBlock({
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
             <div className="relative w-64 h-80 md:w-80 md:h-96 rounded-lg overflow-hidden bg-muted">
-              {image && (
-                <SanityImage image={image} fill className="object-cover" />
-              )}
+              {image && <SanityImage image={image} />}
             </div>
           </motion.div>
         </div>

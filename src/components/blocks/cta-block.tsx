@@ -48,7 +48,7 @@ export function CtaBlock({
 
   const imageContent = image && (
     <div className="relative w-full aspect-4/3 rounded-lg overflow-hidden bg-muted">
-      <SanityImage image={image} fill className="object-cover" />
+      <SanityImage image={image} />
     </div>
   );
 
