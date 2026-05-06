@@ -25,7 +25,7 @@ export const pageBuilder = defineType({
         },
         {
           name: 'content',
-          of: ['textBlock', 'collectionBlock'],
+          of: ['textBlock', 'collectionBlock', 'caseStudyBlock'],
         },
         {
           name: 'media',

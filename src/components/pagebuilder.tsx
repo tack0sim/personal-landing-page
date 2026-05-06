@@ -4,6 +4,7 @@ import { HeroBlock } from './blocks/hero-block';
 import { CloudBlock } from './blocks/cloud-block';
 import { CtaBlock } from './blocks/cta-block';
 import { MediaGridBlock } from './blocks/media-grid-block';
+import { CaseStudyBlock } from './blocks/case-study-block';
 
 type BlockEntry = NonNullable<PageBuilderBlocks>[number];
 
@@ -23,6 +24,7 @@ const BLOCK_COMPONENTS: Partial<BlockComponentMap> = {
   ctaBlock: CtaBlock,
   cloudBlock: CloudBlock,
   mediaGridBlock: MediaGridBlock,
+  caseStudyBlock: CaseStudyBlock,
 };
 
 function renderBlock(block: BlockEntry, map: Partial<BlockComponentMap>) {

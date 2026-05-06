@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import type { PageBuilderBlockType } from '@/types';
-import { motion, number } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { stegaClean } from 'next-sanity';
 import { SanityImage } from '../sanity-image';
 import { Container } from '../ui/container';

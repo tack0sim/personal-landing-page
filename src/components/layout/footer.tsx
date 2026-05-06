@@ -8,15 +8,17 @@ export function Footer({ siteTitle }: { siteTitle: string }) {
         <span className="font-medium text-foreground">{siteTitle}</span> — made
         with 💜
       </p>
-      <span>View this project on{" "}
-      <Link
-        href="https://github.com/tack0sim/personal-landing-page"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="underline decoration-dotted cursor-pointer"
-      >
-        GitHub
-      </Link></span>
+      <span>
+        View this webapp on{' '}
+        <Link
+          href="https://github.com/tack0sim/personal-landing-page"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-dotted cursor-pointer"
+        >
+          GitHub
+        </Link>
+      </span>
     </footer>
   );
 }

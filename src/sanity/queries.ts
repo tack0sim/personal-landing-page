@@ -206,6 +206,32 @@ const cloudBlockFragment = /* groq */ `
   }
 `;
 
+const caseStudyBlockFragment = /* groq */ `
+  _type == "caseStudyBlock" => {
+    title,
+    subtitle,
+    projects[] {
+      _key,
+      title,
+      challenge,
+      decisions,
+      technologies[] {
+        _key,
+        name,
+        icon {
+          ${customImageFragment}
+        }
+      },
+      image {
+        ${customImageFragment}
+      },
+      link {
+        ${linkFragment}
+      }
+    }
+  }
+`;
+
 // ─── Page Builder Fragment ────────────────────────────────────────────────────
 
 /**
@@ -227,7 +253,8 @@ export const pageBuilderFragment = /* groq */ `
     ${mediaBlockFragment},
     ${mediaGridBlockFragment},
     ${ctaBlockFragment},
-    ${cloudBlockFragment}
+    ${cloudBlockFragment},
+    ${caseStudyBlockFragment}
   }
 `;
 

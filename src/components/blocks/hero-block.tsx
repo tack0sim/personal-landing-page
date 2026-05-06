@@ -1,7 +1,7 @@
 'use client';
 
 import type { PageBuilderBlockType } from '@/types';
-import { ArrowRight, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { LinkedinIcon } from '@sanity/icons';
 import { SanityImage } from '../sanity-image';
 import { Section } from '../ui/section';
@@ -72,7 +72,7 @@ export function HeroBlock({
                   className="gap-2"
                 >
                   <Link
-                    href={button.link?.href!}
+                    href={button.link?.href ?? '#'}
                     target={button.link?.openInNewTab ? '_blank' : '_self'}
                     rel="noopener noreferrer"
                     className="flex justify-center items-center gap-2"

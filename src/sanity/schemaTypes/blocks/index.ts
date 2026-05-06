@@ -3,6 +3,7 @@ import { mediaBlock } from './media-block';
 import { mediaGridBlock } from './media-grid-block';
 import { ctaBlock } from './cta-block';
 import { cloudBlock } from './cloud-block';
+import { caseStudyBlock } from './case-study-block';
 
 export const pageBuilderBlocks = [
   heroBlock,
@@ -10,4 +11,5 @@ export const pageBuilderBlocks = [
   mediaGridBlock,
   ctaBlock,
   cloudBlock,
+  caseStudyBlock,
 ];
