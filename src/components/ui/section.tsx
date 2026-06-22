@@ -9,7 +9,7 @@ export function Section({
 }) {
   return (
     <section
-      className={cn('w-full mx-auto py-12 md:py-16 lg:py-20', className)}
+      className={cn('w-full mx-auto py-24 md:py-28 lg:py-32', className)}
     >
       {children}
     </section>

@@ -25,8 +25,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
       {...fadeUp}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
-      className="grid min-h-103.75 grid-cols-1 overflow-hidden rounded-2xl border border-border/50 shadow-sm lg:grid-cols-[3fr_4fr]"
+      transition={{ duration: 0.8, delay: index * 0.15, ease: 'easeOut' }}
+      className="grid min-h-103.75 grid-cols-1 overflow-hidden rounded-2xl border border-border/50 shadow-sm lg:grid-cols-[2fr_3fr]"
     >
       <div
         className={cn(
@@ -39,17 +39,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
       </div>
 
-      <div className="flex flex-col justify-center gap-6 bg-card p-8 lg:p-12">
+      <div className="flex flex-col justify-center gap-8 bg-card p-10 lg:p-14">
         {project.title && (
-          <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
+          <h3 className="text-xl font-light tracking-tight md:text-2xl">
             {project.title}
           </h3>
         )}
 
         {project.challenge && (
-          <div className="space-y-1.5">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              The Challenge
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-muted-foreground">
+              Challenge
             </p>
             <p className="leading-relaxed text-muted-foreground">
               {project.challenge}
@@ -58,14 +58,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
 
         {!!project.decisions?.length && (
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-muted-foreground">
               Key Decisions
             </p>
-            <ul className="space-y-1">
+            <ul className="space-y-2">
               {project.decisions.map((decision) => (
-                <li key={decision} className="flex items-start gap-2 text-sm">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-foreground/40" />
+               <li key={decision} className="flex items-start gap-3 text-sm">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent-primary" />
                   <span className="text-muted-foreground">{decision}</span>
                 </li>
               ))}
@@ -124,7 +124,7 @@ export function CaseStudyBlock({
   if (!projects?.length) return null;
 
   return (
-    <Section>
+    <Section className="bg-sidebar">
       <Container>
         <div>
           {(title || subtitle) && (

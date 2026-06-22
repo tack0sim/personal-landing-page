@@ -39,15 +39,15 @@ export function MediaGridBlock({
   return (
     <Section>
       <Container>
-        <div className="space-y-10">
+        <div className="space-y-16">
           {hasHeader && (
             <motion.div
               {...fadeUp}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
               className="space-y-4 max-w-2xl"
             >
               {eyebrow && (
-                <p className="text-muted-foreground text-sm tracking-wide uppercase">
+                <p className="text-muted-foreground text-sm font-medium">
                   {eyebrow}
                 </p>
               )}
@@ -56,16 +56,16 @@ export function MediaGridBlock({
                   {title}
                 </h2>
               )}
-              {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
+              {subtitle && <p className="text-muted-foreground leading-relaxed">{subtitle}</p>}
             </motion.div>
           )}
 
-          <div className={cn('grid grid-cols-1 gap-4', gridClass)}>
+          <div className={cn('grid grid-cols-1 gap-3', gridClass)}>
             {mediaItems?.images?.map((item, i) => (
               <motion.div
                 key={item.image?.image?.asset?._id || i}
                 {...fadeUp}
-                transition={{ duration: 0.5, delay: i * 0.05, ease: 'easeOut' }}
+                transition={{ duration: 0.8, delay: i * 0.075, ease: 'easeOut' }}
                 className="relative aspect-square rounded-lg overflow-hidden bg-muted shadow-lg border border-border/50"
               >
                 {item.link?.href ? (

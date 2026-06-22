@@ -20,29 +20,29 @@ export function HeroBlock({
   return (
     <Section>
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
           {/* Text Content */}
           <motion.div
-            className="order-2 lg:order-1 space-y-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="order-2 lg:order-1 space-y-12"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <div className="space-y-4">
+            <div className="space-y-6">
               {eyebrow && (
-                <p className="text-muted-foreground text-sm tracking-wide uppercase">
+                <p className="text-muted-foreground text-sm font-medium">
                   {eyebrow}
                 </p>
               )}
               {title && (
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-balance">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.15] text-balance">
                   {title}
                 </h1>
               )}
             </div>
 
             {subtitle && (
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
+              <p className="text-muted-foreground text-lg leading-[1.8] max-w-md">
                 {subtitle}
               </p>
             )}
@@ -60,7 +60,7 @@ export function HeroBlock({
                   }
                   variant={
                     button.style === 'primary'
-                      ? 'default'
+                      ? 'accent'
                       : button.style === 'outline'
                         ? 'outline'
                         : button.style === 'secondary'

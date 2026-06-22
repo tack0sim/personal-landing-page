@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup #2: Creative Narrative - Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #4B5BA3;
+            --accent-blue: #A6B8FF;
+            --surface: #FAFBFD;
+            --muted: #8B92A8;
+            --text-dark: #1A1F3A;
+            --border: #E0E4F0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Georgia', serif;
+            background: white;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 128px 20px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 96px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        .hero-image {
+            order: -1;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(42, 42, 40, 0.15);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-image {
+                order: 0;
+            }
+        }
+
+        .eyebrow {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: none;
+            color: var(--muted);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            text-balance: pretty;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 450px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease-out;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary-charcoal);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface);
+            transform: scale(1.01);
+        }
+
+        .btn-link {
+            background: transparent;
+            color: var(--accent-gold);
+            border: none;
+            padding: 0;
+        }
+
+        .btn-link:hover {
+            color: var(--primary-charcoal);
+        }
+
+        /* MEDIA GRID: WORK GALLERY */
+        .work-gallery {
+            padding: 96px 20px;
+        }
+
+        .gallery-header {
+            margin-bottom: 60px;
+        }
+
+        .gallery-header .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .gallery-header h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .gallery-header p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 300ms ease-out;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .gallery-item-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* CTA: PHILOSOPHY */
+        .philosophy-section {
+            padding: 112px 20px;
+            background: var(--surface);
+        }
+
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 96px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .philosophy-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        .philosophy-text {
+            max-width: 500px;
+        }
+
+        .philosophy-text h2 {
+            font-size: 2.25rem;
+            font-weight: 300;
+            margin-bottom: 32px;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .philosophy-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .philosophy-image {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #D4A574 0%, #A67C52 100%);
+            border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(42, 42, 40, 0.12);
+        }
+
+        /* CASE STUDIES */
+        .case-studies-section {
+            padding: 96px 20px;
+        }
+
+        .case-studies-header h2 {
+            font-size: 2.25rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .case-studies-header .subtitle {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 60px;
+        }
+
+        .case-study {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 80px;
+            align-items: center;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 1024px) {
+            .case-study {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .case-study.flipped {
+            direction: rtl;
+        }
+
+        .case-study.flipped > * {
+            direction: ltr;
+        }
+
+        .case-study-image {
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(42, 42, 40, 0.1);
+        }
+
+        .case-study-content h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .case-study-content .challenge {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .case-study-content .decisions {
+            margin-bottom: 28px;
+        }
+
+        .decisions-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+        }
+
+        .decision-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .decision-list li {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            display: flex;
+            gap: 10px;
+        }
+
+        .decision-list li::before {
+            content: "◆";
+            color: var(--accent-gold);
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .impact-metrics {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--primary-charcoal);
+            border: 1px solid var(--border);
+            margin-top: 24px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-charcoal);
+            color: white;
+        }
+
+        /* CLOUD LOGOS: CLIENTS */
+        .clients-section {
+            padding: 80px 20px;
+            background: var(--surface);
+        }
+
+        .logos-container {
+            display: flex;
+            gap: 80px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+
+        .logo {
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-weight: 500;
+            transition: all 300ms ease-out;
+        }
+
+        .logo:hover {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .logo-lg {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* TEAM/STUDIO SECTION */
+        .studio-section {
+            padding: 96px 20px;
+        }
+
+        .studio-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .studio-content h2 {
+            font-size: 2.25rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .studio-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+
+        .studio-image {
+            aspect-ratio: 3/2;
+            background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 16px 40px rgba(42, 42, 40, 0.15);
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            padding: 128px 20px;
+            text-align: center;
+            background: var(--surface);
+        }
+
+        .final-cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .final-cta-content .eyebrow {
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .final-cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .final-cta-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .final-cta-email {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--primary-charcoal);
+            margin: 32px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-accent {
+            background: var(--accent-gold);
+            color: white;
+            padding: 14px 32px;
+            font-weight: 600;
+            transition: all 500ms ease-out;
+        }
+
+        .btn-accent:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(212, 165, 116, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-image"></div>
+        <div>
+            <span class="eyebrow">Design Studio</span>
+            <h1 class="hero-title">Brands that feel like they were made for you</h1>
+            <p class="hero-subtitle">We craft brand identities and product experiences that people remember. Not because they're loud, but because they're true.</p>
+            <div class="button-group">
+                <button class="btn btn-ghost">Explore Work</button>
+                <button class="btn btn-link">→ View Process</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WORK GALLERY -->
+<section class="work-gallery">
+    <div class="container">
+        <div class="gallery-header">
+            <span class="eyebrow">Selected Work</span>
+            <h2>Projects that became part of people's lives</h2>
+            <p>Each one started with a question: what does this need to feel like?</p>
+        </div>
+        <div class="grid-4">
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Haven App</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Ritual Coffee</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Blueprint</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Zenith Pay</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Nocturne</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Oasis</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Forge</span>
+            </div>
+            <div class="gallery-item">
+                <span class="gallery-item-badge">Prism</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+    <div class="container">
+        <div class="philosophy-content">
+            <div class="philosophy-text">
+                <span class="eyebrow">Our Approach</span>
+                <h2>Good design isn't decoration. It's decision-making.</h2>
+                <p>Every visual choice, every interaction, every moment is intentional. We don't add elements because they look nice. We add them because they solve a problem or deepen understanding.</p>
+                <p>That's why our clients don't just have brands. They have conviction. They stand for something real.</p>
+            </div>
+            <div class="philosophy-image"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="case-studies-section">
+    <div class="container">
+        <div class="case-studies-header">
+            <h2>Work we're proud of</h2>
+            <p class="subtitle">A closer look at three projects</p>
+        </div>
+
+        <div class="case-study">
+            <div class="case-study-image"></div>
+            <div class="case-study-content">
+                <h3>Ritual Coffee — Brand Identity</h3>
+                <p class="challenge">A specialty roastery in Portland needed to communicate their craft without feeling exclusive. The challenge was honoring their passion for coffee while welcoming newcomers into the experience.</p>
+                <div class="decisions">
+                    <div class="decisions-title">Key Decisions</div>
+                    <ul class="decision-list">
+                        <li>Hand-drawn illustrations to convey authenticity</li>
+                        <li>Warm color palette that tells a story</li>
+                        <li>Typography that balances heritage and modernity</li>
+                        <li>Packaging design that becomes a collectible</li>
+                    </ul>
+                </div>
+                <div class="impact-metrics">
+                    Impact: +140% brand recognition, 2M social impressions in first month
+                </div>
+                <button class="btn btn-outline">View Case Study</button>
+            </div>
+        </div>
+
+        <div class="case-study flipped">
+            <div class="case-study-image"></div>
+            <div class="case-study-content">
+                <h3>Haven App — Product Design</h3>
+                <p class="challenge">A meditation and wellness platform needed a visual identity that felt calming yet modern. The interface had to guide users through complexity without overwhelming them.</p>
+                <div class="decisions">
+                    <div class="decisions-title">Key Decisions</div>
+                    <ul class="decision-list">
+                        <li>Minimalist interface with purposeful negative space</li>
+                        <li>Subtle animations that encourage mindfulness</li>
+                        <li>Custom illustration style for meditation guides</li>
+                        <li>Accessible color system for dark mode</li>
+                    </ul>
+                </div>
+                <div class="impact-metrics">
+                    Impact: 4.8⭐ ratings, 500K daily active users within 6 months
+                </div>
+                <button class="btn btn-outline">View Case Study</button>
+            </div>
+        </div>
+
+        <div class="case-study">
+            <div class="case-study-image"></div>
+            <div class="case-study-content">
+                <h3>Zenith Pay — Platform Rebrand</h3>
+                <p class="challenge">A fintech startup was losing market confidence due to an outdated visual identity. They needed to communicate innovation and trustworthiness simultaneously.</p>
+                <div class="decisions">
+                    <div class="decisions-title">Key Decisions</div>
+                    <ul class="decision-list">
+                        <li>Geometric brand mark inspired by growth patterns</li>
+                        <li>Premium typography system for confidence</li>
+                        <li>Data visualization language that's intuitive</li>
+                        <li>Animated micro-interactions for delight</li>
+                    </ul>
+                </div>
+                <div class="impact-metrics">
+                    Impact: $50M Series A funding, +300% enterprise leads
+                </div>
+                <button class="btn btn-outline">View Case Study</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-section">
+    <div class="container">
+        <div class="logos-container">
+            <div class="logo">Ritual</div>
+            <div class="logo logo-lg">Haven</div>
+            <div class="logo">Blueprint</div>
+            <div class="logo">Zenith</div>
+            <div class="logo logo-lg">Nocturne</div>
+            <div class="logo">Oasis</div>
+            <div class="logo">Forge</div>
+            <div class="logo logo-lg">Prism</div>
+        </div>
+    </div>
+</section>
+
+<!-- STUDIO SECTION -->
+<section class="studio-section">
+    <div class="container">
+        <div class="studio-content">
+            <span class="eyebrow">About the Studio</span>
+            <h2>Founded by designers who care about the why</h2>
+            <p>We're a small team in Brooklyn. We work with founders who see design as strategy, not decoration. We take on 6–8 projects a year, which means we can give each one our full attention.</p>
+            <div class="studio-image"></div>
+            <p>If you're building something meaningful, let's talk about whether we're the right fit.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+    <div class="final-cta-content">
+        <span class="eyebrow">Let's Talk</span>
+        <h2>Have a project in mind?</h2>
+        <p>We take on 6–8 projects a year. If you're building something meaningful, let's explore whether we're the right fit.</p>
+        <div class="final-cta-email">hello@creativestudio.com</div>
+        <div class="cta-buttons">
+            <button class="btn btn-accent">Start a Conversation</button>
+            <button class="btn btn-link">→ View Process Deck</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Creative Studio. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

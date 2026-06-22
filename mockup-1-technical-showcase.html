@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup #1: Technical Showcase - Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #4B5BA3;
+            --accent-blue: #A6B8FF;
+            --surface: #FAFBFD;
+            --muted: #8B92A8;
+            --text-dark: #1A1F3A;
+            --border: #E0E4F0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: white;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 64px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 0;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 96px 20px;
+            background: linear-gradient(135deg, rgba(75, 91, 163, 0.02) 0%, rgba(166, 184, 255, 0.02) 100%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .eyebrow {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: var(--muted);
+            max-width: 400px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 300ms ease-out;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(166, 184, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(166, 184, 255, 0.4);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface);
+            transform: scale(1.02);
+        }
+
+        .hero-image {
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 0.875rem;
+            box-shadow: 0 20px 40px rgba(75, 91, 163, 0.15);
+        }
+
+        .data-pulse {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-variant-numeric: tabular-nums;
+            font-weight: 600;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* CTA BLOCK */
+        .cta-block {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .cta-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .pain-points {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: left;
+            margin: 24px 0;
+            background: var(--surface);
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .pain-point {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            display: flex;
+            gap: 12px;
+        }
+
+        .pain-point::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* MEDIA GRID */
+        .media-grid {
+            padding: 80px 20px;
+        }
+
+        .media-grid-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .media-grid-header .eyebrow {
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .media-grid-header h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--text-dark);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .grid-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #E8ECFF 0%, #F0F4FF 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.875rem;
+            color: var(--muted);
+            transition: all 300ms ease-out;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(75, 91, 163, 0.1);
+        }
+
+        .grid-item-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: var(--accent-blue);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* CLOUD LOGOS */
+        .cloud-block {
+            padding: 64px 20px;
+            background: var(--surface);
+        }
+
+        .logos-container {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+
+        .logo {
+            font-size: 0.875rem;
+            color: var(--muted);
+            font-weight: 600;
+            transition: all 300ms ease-out;
+        }
+
+        .logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* CASE STUDY */
+        .case-study-section {
+            padding: 96px 20px;
+        }
+
+        .case-study-section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .case-study-section .subtitle {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 60px;
+        }
+
+        .case-study {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 1024px) {
+            .case-study {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .case-study.flipped {
+            direction: rtl;
+        }
+
+        .case-study.flipped > * {
+            direction: ltr;
+        }
+
+        .case-study-image {
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #A6B8FF 0%, #4B5BA3 100%);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .case-study-content {
+            padding: 40px;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .case-study-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .case-study-content .challenge {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .case-study-content .decisions {
+            margin-bottom: 20px;
+        }
+
+        .decisions-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+        }
+
+        .decision-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .decision-list li {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            display: flex;
+            gap: 8px;
+        }
+
+        .decision-list li::before {
+            content: "→";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .badge {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            margin-top: 20px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* GRID 2-COL */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .grid-2-item {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #E8ECFF 0%, #F0F4FF 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            padding: 96px 20px;
+            text-align: center;
+        }
+
+        .final-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .final-cta p {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .terminal-image {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #2a2d3a 0%, #1a1f3a 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #10B981;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <span class="eyebrow">TRUSTED BY 500+ ENGINEERING TEAMS</span>
+            <h1 class="hero-title">Scale infrastructure. Not complexity.</h1>
+            <p class="hero-subtitle">Deploy with confidence. Observe with clarity. Scale without friction.</p>
+            <div class="button-group">
+                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-ghost">Learn More</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="data-pulse">✦ 2,847,392 deploys</div>
+            Hero Image
+        </div>
+    </div>
+</section>
+
+<!-- CTA: THE CHALLENGE -->
+<section class="cta-block">
+    <div class="cta-content">
+        <span class="eyebrow">THE CHALLENGE</span>
+        <h2 class="cta-title">Traditional deployment pipelines slow teams down</h2>
+        <p class="cta-text">Every deploy becomes a bottleneck. Every incident becomes an investigation. Your team deserves better.</p>
+        <div class="pain-points">
+            <div class="pain-point">One failure blocks 50+ engineers</div>
+            <div class="pain-point">Monitoring visibility is fragmented across 10+ tools</div>
+            <div class="pain-point">Scaling requires re-architecting your entire pipeline</div>
+        </div>
+    </div>
+</section>
+
+<!-- MEDIA GRID: PLATFORM CAPABILITIES -->
+<section class="media-grid">
+    <div class="container">
+        <div class="media-grid-header">
+            <span class="eyebrow">PLATFORM CAPABILITIES</span>
+            <h2>Built for how teams actually work</h2>
+        </div>
+        <div class="grid-3">
+            <div class="grid-item">
+                <span class="grid-item-badge">Real-time</span>
+                Feature Screenshot
+            </div>
+            <div class="grid-item">
+                <span class="grid-item-badge">Zero Config</span>
+                Feature Screenshot
+            </div>
+            <div class="grid-item">
+                <span class="grid-item-badge">AI-Powered</span>
+                Feature Screenshot
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLOUD LOGOS -->
+<section class="cloud-block">
+    <div class="container">
+        <div class="logos-container">
+            <div class="logo">Stripe</div>
+            <div class="logo">Vercel</div>
+            <div class="logo">Figma</div>
+            <div class="logo">GitHub</div>
+            <div class="logo">Notion</div>
+            <div class="logo">Linear</div>
+            <div class="logo">Slack</div>
+            <div class="logo">Datadog</div>
+        </div>
+    </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="case-study-section">
+    <div class="container">
+        <h2>Engineering teams ship 3x faster</h2>
+        <p class="subtitle">Real results from real teams</p>
+
+        <div class="case-study">
+            <div class="case-study-image"></div>
+            <div class="case-study-content">
+                <h3>Stripe reduced deploy time by 67%</h3>
+                <p class="challenge">With 200+ microservices, every deploy took 45 minutes and required manual coordination.</p>
+                <div class="decisions">
+                    <div class="decisions-title">Key Decisions</div>
+                    <ul class="decision-list">
+                        <li>Parallel deploys enabled across services</li>
+                        <li>Automated rollbacks with metrics tracking</li>
+                        <li>Real-time observability platform-wide</li>
+                    </ul>
+                </div>
+                <div class="badges">
+                    <span class="badge">Kubernetes</span>
+                    <span class="badge">gRPC</span>
+                    <span class="badge">Prometheus</span>
+                </div>
+                <button class="btn btn-outline">View Project</button>
+            </div>
+        </div>
+
+        <div class="case-study flipped">
+            <div class="case-study-image"></div>
+            <div class="case-study-content">
+                <h3>TechCorp accelerated CI/CD by 5x</h3>
+                <p class="challenge">Legacy infrastructure made incremental releases slow and risky.</p>
+                <div class="decisions">
+                    <div class="decisions-title">Key Decisions</div>
+                    <ul class="decision-list">
+                        <li>Container orchestration with automatic scaling</li>
+                        <li>Blue-green deployment strategy</li>
+                        <li>Comprehensive monitoring dashboards</li>
+                    </ul>
+                </div>
+                <div class="badges">
+                    <span class="badge">Docker</span>
+                    <span class="badge">PostgreSQL</span>
+                    <span class="badge">ArgoCD</span>
+                </div>
+                <button class="btn btn-outline">View Project</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ARCHITECTURE DIAGRAMS -->
+<section class="media-grid">
+    <div class="container">
+        <div class="media-grid-header">
+            <h2>Designed for scale</h2>
+        </div>
+        <div class="grid-2">
+            <div class="grid-2-item"></div>
+            <div class="grid-2-item"></div>
+            <div class="grid-2-item"></div>
+            <div class="grid-2-item"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+    <div class="final-cta-content">
+        <span class="eyebrow">START TODAY</span>
+        <h2>Ship your first deploy in 5 minutes</h2>
+        <p>No credit card. No setup calls. Just code.</p>
+        <p><strong>Join 500+ teams already scaling with confidence</strong></p>
+        <div class="terminal-image">
+            $ deploy --production
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 DeployPlatform. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

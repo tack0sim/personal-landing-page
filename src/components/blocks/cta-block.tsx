@@ -13,6 +13,7 @@ const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: '-100px' },
+  transition: { duration: 0.8, ease: 'easeOut' },
 };
 
 export function CtaBlock({
@@ -30,16 +31,16 @@ export function CtaBlock({
   const textContent = (
     <>
       {eyebrow && (
-        <p className="text-muted-foreground text-sm tracking-wide uppercase">
+        <p className="text-muted-foreground text-sm font-medium">
           {eyebrow}
         </p>
       )}
       {title && (
-        <h2 className="text-2xl md:text-3xl font-light tracking-tight">
+        <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-[1.2]">
           {title}
         </h2>
       )}
-      {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
+      {subtitle && <p className="text-muted-foreground leading-[1.8]">{subtitle}</p>}
       {richTextCore && (
         <RichText value={richTextCore} className="text-muted-foreground" />
       )}
@@ -54,7 +55,7 @@ export function CtaBlock({
 
   if (isCenterAligned) {
     return (
-      <Section>
+      <Section className="bg-sidebar">
         <Container>
           <div className="flex flex-col items-center gap-10">
             <motion.div
@@ -81,7 +82,7 @@ export function CtaBlock({
   }
 
   return (
-    <Section>
+    <Section className="bg-sidebar">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <motion.div
