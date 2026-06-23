@@ -39,7 +39,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
       </div>
 
-      <div className="flex flex-col justify-center gap-8 bg-card p-10 lg:p-14">
+      <div className="flex flex-col justify-center gap-8 bg-background p-10 lg:p-14">
         {project.title && (
           <h3 className="text-xl font-light tracking-tight md:text-2xl">
             {project.title}
@@ -124,7 +124,7 @@ export function CaseStudyBlock({
   if (!projects?.length) return null;
 
   return (
-    <Section className="bg-sidebar">
+    <Section className="bg-border/10">
       <Container>
         <div>
           {(title || subtitle) && (

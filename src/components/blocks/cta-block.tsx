@@ -82,7 +82,7 @@ export function CtaBlock({
   }
 
   return (
-    <Section className="bg-sidebar">
+    <Section className="bg-card">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <motion.div
