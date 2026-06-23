@@ -66,7 +66,7 @@ export function MediaGridBlock({
                 key={item.image?.image?.asset?._id || i}
                 {...fadeUp}
                 transition={{ duration: 0.8, delay: i * 0.075, ease: 'easeOut' }}
-                className="relative aspect-square rounded-lg overflow-hidden bg-muted shadow-lg border border-border/50 transition-all duration-500 hover:scale-[1.01] hover:shadow-xl"
+                className="relative aspect-square rounded-lg overflow-hidden bg-muted shadow-lg border border-border/50 hover:shadow-xl"
               >
                 {item.link?.href ? (
                   <Link
