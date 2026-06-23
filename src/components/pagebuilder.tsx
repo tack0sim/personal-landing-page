@@ -31,7 +31,7 @@ function renderBlock(block: BlockEntry, map: Partial<BlockComponentMap>) {
   const Component = map[block._type] as ComponentType<typeof block> | undefined;
   if (!Component) return null;
   return (
-    <div data-slot={block._type} key={block._key}>
+    <div data-slot={block._type} key={block._key} id={block.sectionId ?? ''}>
       <Component {...block} />
     </div>
   );

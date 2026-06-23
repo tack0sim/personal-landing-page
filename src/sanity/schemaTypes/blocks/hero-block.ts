@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { buttonsField } from '../utils/common';
+import { buttonsField, sectionIdField } from '../utils/common';
 import { HouseHeart } from 'lucide-react';
 
 export const heroBlock = defineType({
@@ -29,6 +29,7 @@ export const heroBlock = defineType({
       description: 'The main image for the hero section background',
     }),
     buttonsField,
+    sectionIdField,
   ],
   preview: {
     select: {

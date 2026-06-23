@@ -1,5 +1,6 @@
 import { BriefcaseIcon } from 'lucide-react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
+import { sectionIdField } from '../utils/common';
 
 export const caseStudyBlock = defineType({
   name: 'caseStudyBlock',
@@ -95,6 +96,7 @@ export const caseStudyBlock = defineType({
         }),
       ],
     }),
+    sectionIdField,
   ],
   preview: {
     select: { title: 'title', projects: 'projects' },

@@ -3,6 +3,7 @@ import {
   alignmentField,
   buttonsField,
   richTextWithImage,
+  sectionIdField,
 } from '../utils/common';
 import { PresentationIcon } from 'lucide-react';
 
@@ -33,5 +34,6 @@ export const mediaBlock = defineType({
       ],
       initialValue: 'left',
     }),
+    sectionIdField,
   ],
 });

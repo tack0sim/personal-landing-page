@@ -1,5 +1,6 @@
 import { GridIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
+import { sectionIdField } from '../utils/common';
 
 export const mediaGridBlock = defineType({
   name: 'mediaGridBlock',
@@ -103,6 +104,7 @@ export const mediaGridBlock = defineType({
       initialValue: 2,
       validation: (Rule) => Rule.required(),
     }),
+    sectionIdField,
   ],
   preview: {
     select: {

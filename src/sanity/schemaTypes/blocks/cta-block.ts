@@ -1,6 +1,6 @@
 import { MegaphoneIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
-import { alignmentField, buttonsField } from '../utils/common';
+import { alignmentField, buttonsField, sectionIdField } from '../utils/common';
 import { richText } from '../utils/common';
 
 export const ctaBlock = defineType({
@@ -37,6 +37,7 @@ export const ctaBlock = defineType({
       ],
       initialValue: 'center',
     }),
+    sectionIdField,
   ],
   preview: {
     select: {

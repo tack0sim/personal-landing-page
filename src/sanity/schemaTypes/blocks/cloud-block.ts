@@ -1,5 +1,6 @@
 import { CloudIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
+import { sectionIdField } from '../utils/common';
 
 export const cloudBlock = defineType({
   name: 'cloudBlock',
@@ -13,6 +14,7 @@ export const cloudBlock = defineType({
       of: [{ type: 'customImage' }],
       description: 'Add logo images to display in the infinite scroll strip.',
     }),
+    sectionIdField,
   ],
   preview: {
     select: {
