@@ -1,10 +1,18 @@
-import { defineField, type StringOptions } from 'sanity';
+import { defineField, defineType, type StringOptions } from 'sanity';
 import { group } from './groups';
 
 export const pageBuilderField = defineField({
   name: 'pageBuilder',
   type: 'pageBuilder',
   group: group.content,
+});
+
+export const buttonField = defineField({
+  name: 'button',
+  type: 'array',
+  of: [{ type: 'button' }],
+  validation: (rule) =>
+    rule.max(1).error('Only one button allowed in this field'),
 });
 
 export const buttonsField = defineField({
@@ -95,3 +103,15 @@ export const ogFields = [
     group: group.og,
   }),
 ];
+
+export const sectionIdField = defineField({
+  name: 'sectionId',
+  type: 'string',
+  description:
+    'Unique ID for this section (used for anchor links) - without the "#" symbol',
+  validation: (rule) =>
+    rule.regex(
+      /^[a-zA-Z0-9_-]+$/,
+      'Section ID can only contain letters, numbers, underscores, and hyphens',
+    ),
+});

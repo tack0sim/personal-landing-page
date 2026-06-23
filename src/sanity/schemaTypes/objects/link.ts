@@ -10,17 +10,29 @@ export const link = defineType({
       type: 'string',
       options: {
         list: [
+          { title: 'Anchor', value: 'anchor' },
           { title: 'External', value: 'external' },
         ],
         layout: 'radio',
       },
-      initialValue: 'external',
+      initialValue: 'anchor',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'anchor',
+      type: 'string',
+      description: 'Enter the anchor link without "#" (e.g., section-id)',
+      hidden: ({ parent }) => parent?.type !== 'anchor',
     }),
     defineField({
       name: 'external',
       type: 'url',
       description: 'Enter the external URL',
+      hidden: ({ parent }) => parent?.type !== 'external',
+      validation: (rule) =>
+        rule.uri({
+          scheme: ['http', 'https', 'mailto', 'tel'],
+        }),
     }),
     defineField({
       name: 'openInNewTab',

@@ -209,6 +209,13 @@
             }
           },
           "optional": true
+        },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         }
       }
     }
@@ -245,6 +252,13 @@
                 "name": "customImage"
               }
             }
+          },
+          "optional": true
+        },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }
@@ -343,6 +357,13 @@
             ]
           },
           "optional": true
+        },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         }
       }
     }
@@ -407,6 +428,13 @@
                 "value": 4
               }
             ]
+          },
+          "optional": true
+        },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }
@@ -487,6 +515,13 @@
             ]
           },
           "optional": true
+        },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         }
       }
     }
@@ -552,6 +587,13 @@
                 "name": "button"
               }
             }
+          },
+          "optional": true
+        },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }
@@ -1049,6 +1091,37 @@
     }
   },
   {
+    "name": "linkLabel",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "linkLabel"
+          }
+        },
+        "label": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "link": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "link"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
     "name": "link",
     "type": "type",
     "value": {
@@ -1068,9 +1141,20 @@
             "of": [
               {
                 "type": "string",
+                "value": "anchor"
+              },
+              {
+                "type": "string",
                 "value": "external"
               }
             ]
+          },
+          "optional": true
+        },
+        "anchor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         },
@@ -1190,6 +1274,87 @@
             }
           }
         ]
+      }
+    }
+  },
+  {
+    "name": "navbar",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "navbar"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "links": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "linkLabel"
+            }
+          }
+        },
+        "optional": true
+      },
+      "button": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "button"
+            }
+          }
+        },
+        "optional": true
       }
     }
   },

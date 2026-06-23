@@ -41,14 +41,14 @@ export const customImageFragment = /* groq */ `
 /**
  * Body projection for the `link` object type.
  *
- * Resolves `internal` page references to their slug at query time and
+ * Resolves `anchor` references to their href at query time and
  * normalises both variants into a single `href` string. Components always
  * receive a plain `href` — no branching needed at render time.
  */
 export const linkFragment = /* groq */ `
   type,
   "href": select(
-    type == "internal" => "/" + internal->slug.current,
+    type == "anchor" => "#" + anchor,
     type == "external" => external,
     "#"
   ),
@@ -139,7 +139,8 @@ const heroBlockFragment = /* groq */ `
     },
     buttons[] {
       ${buttonFragment}
-    }
+    },
+    sectionId
   }
 `;
 
@@ -155,7 +156,8 @@ const mediaBlockFragment = /* groq */ `
     buttons[] {
       ${buttonFragment}
     },
-    alignment
+    alignment,
+    sectionId
   }
 `;
 
@@ -176,7 +178,8 @@ const mediaGridBlockFragment = /* groq */ `
         badgeVariant
       }
     },
-    columns
+    columns,
+    sectionId
   }
 `;
 
@@ -194,7 +197,8 @@ const ctaBlockFragment = /* groq */ `
     buttons[] {
       ${buttonFragment}
     },
-    alignment
+    alignment,
+    sectionId
   }
 `;
 
@@ -202,7 +206,8 @@ const cloudBlockFragment = /* groq */ `
   _type == "cloudBlock" => {
     logos[] {
       ${customImageFragment}
-    }
+    },
+    sectionId
   }
 `;
 
@@ -228,7 +233,8 @@ const caseStudyBlockFragment = /* groq */ `
       link {
         ${linkFragment}
       }
-    }
+    },
+    sectionId
   }
 `;
 
@@ -276,6 +282,23 @@ export const SETTINGS_QUERY = defineQuery(/* groq */ `
     _id,
     siteTitle,
     ${metadataFragment}
+  }
+`);
+
+// ─── Navbar singleton ─────────────────────────────────────────────────────────
+
+export const NAVBAR_QUERY = defineQuery(/* groq */ `
+  *[_type == "navbar"][0] {
+    _id,
+    links[] {
+      label,
+      link {
+        ${linkFragment}
+      },
+    },
+    button[] {
+      ${buttonFragment}
+    }
   }
 `);
 

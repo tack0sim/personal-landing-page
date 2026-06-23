@@ -43,6 +43,7 @@ export type CaseStudyBlock = {
     link?: Link;
     _key: string;
   }>;
+  sectionId?: string;
 };
 
 export type CloudBlock = {
@@ -52,6 +53,7 @@ export type CloudBlock = {
       _key: string;
     } & CustomImage
   >;
+  sectionId?: string;
 };
 
 export type CtaBlock = {
@@ -67,6 +69,7 @@ export type CtaBlock = {
     } & Button
   >;
   alignment?: "left" | "center" | "right";
+  sectionId?: string;
 };
 
 export type MediaGridBlock = {
@@ -76,6 +79,7 @@ export type MediaGridBlock = {
   subtitle?: string;
   mediaItems?: MediaItems;
   columns?: 2 | 3 | 4;
+  sectionId?: string;
 };
 
 export type MediaBlock = {
@@ -89,6 +93,7 @@ export type MediaBlock = {
     } & Button
   >;
   alignment?: "left" | "right";
+  sectionId?: string;
 };
 
 export type HeroBlock = {
@@ -102,6 +107,7 @@ export type HeroBlock = {
       _key: string;
     } & Button
   >;
+  sectionId?: string;
 };
 
 export type SanityImageAssetReference = {
@@ -170,9 +176,16 @@ export type Button = {
   size?: "small" | "medium" | "large";
 };
 
+export type LinkLabel = {
+  _type: "linkLabel";
+  label?: string;
+  link?: Link;
+};
+
 export type Link = {
   _type: "link";
-  type?: "external";
+  type?: "anchor" | "external";
+  anchor?: string;
   external?: string;
   openInNewTab?: boolean;
 };
@@ -197,6 +210,24 @@ export type PageBuilder = Array<
       _key: string;
     } & CaseStudyBlock)
 >;
+
+export type Navbar = {
+  _id: string;
+  _type: "navbar";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  links?: Array<
+    {
+      _key: string;
+    } & LinkLabel
+  >;
+  button?: Array<
+    {
+      _key: string;
+    } & Button
+  >;
+};
 
 export type Settings = {
   _id: string;
@@ -370,8 +401,10 @@ export type AllSanitySchemaTypes =
   | RichTextCore
   | RichText
   | Button
+  | LinkLabel
   | Link
   | PageBuilder
+  | Navbar
   | Settings
   | Homepage
   | SanityImageCrop
@@ -389,7 +422,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/queries.ts
 // Variable: HOMEPAGE_QUERY
-// Query: *[_type == "homepage"][0] {    _id,    title,      "pageBuilder": pageBuilder[] {    _type,    _key,      _type == "heroBlock" => {    eyebrow,    title,    subtitle,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    }  },      _type == "mediaBlock" => {    eyebrow,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    richTextWithImage[] {        ...,  _type == "customImage" => {      image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt  },  markDefs[] {    ...,    _type == "link" => {        type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab    }  }    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment  },      _type == "mediaGridBlock" => {    eyebrow,    title,    subtitle,    mediaItems {      images[] {        image {            image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt        },        link {            type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab        },        badgeText,        badgeVariant      }    },    columns  },      _type == "ctaBlock" => {    eyebrow,    title,    subtitle,    richTextCore[] {        ...    },    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment  },      _type == "cloudBlock" => {    logos[] {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  },      _type == "caseStudyBlock" => {    title,    subtitle,    projects[] {      _key,      title,      challenge,      decisions,      technologies[] {        _key,        name,        icon {            image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt        }      },      image {          image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt      },      link {          type,  "href": select(    type == "internal" => "/" + internal->slug.current,    type == "external" => external,    "#"  ),  openInNewTab      }    }  }  },      "seo": {    "title": coalesce(seoTitle, title, ""),    "description": coalesce(seoDescription, ""),    "noIndex": noIndex == true  },  "og": {    "title": coalesce(ogTitle, seoTitle, title, ""),    "description": coalesce(ogDescription, seoDescription, ""),    "image": ogImage {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  }  }
+// Query: *[_type == "homepage"][0] {    _id,    title,      "pageBuilder": pageBuilder[] {    _type,    _key,      _type == "heroBlock" => {    eyebrow,    title,    subtitle,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    sectionId  },      _type == "mediaBlock" => {    eyebrow,    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    richTextWithImage[] {        ...,  _type == "customImage" => {      image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt  },  markDefs[] {    ...,    _type == "link" => {        type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab    }  }    },    buttons[] {        label,  link {      type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment,    sectionId  },      _type == "mediaGridBlock" => {    eyebrow,    title,    subtitle,    mediaItems {      images[] {        image {            image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt        },        link {            type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab        },        badgeText,        badgeVariant      }    },    columns,    sectionId  },      _type == "ctaBlock" => {    eyebrow,    title,    subtitle,    richTextCore[] {        ...    },    image {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    buttons[] {        label,  link {      type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    },    alignment,    sectionId  },      _type == "cloudBlock" => {    logos[] {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    },    sectionId  },      _type == "caseStudyBlock" => {    title,    subtitle,    projects[] {      _key,      title,      challenge,      decisions,      technologies[] {        _key,        name,        icon {            image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt        }      },      image {          image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt      },      link {          type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab      }    },    sectionId  }  },      "seo": {    "title": coalesce(seoTitle, title, ""),    "description": coalesce(seoDescription, ""),    "noIndex": noIndex == true  },  "og": {    "title": coalesce(ogTitle, seoTitle, title, ""),    "description": coalesce(ogDescription, seoDescription, ""),    "image": ogImage {        image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt    }  }  }
 export type HOMEPAGE_QUERY_RESULT = {
   _id: string;
   title: string | null;
@@ -445,11 +478,12 @@ export type HOMEPAGE_QUERY_RESULT = {
             alt: string | null;
           } | null;
           link: {
-            type: "external" | null;
+            type: "anchor" | "external" | null;
             href: string | "#" | null;
             openInNewTab: boolean | null;
           } | null;
         }> | null;
+        sectionId: string | null;
       }
     | {
         _type: "cloudBlock";
@@ -472,6 +506,7 @@ export type HOMEPAGE_QUERY_RESULT = {
           } | null;
           alt: string | null;
         }> | null;
+        sectionId: string | null;
       }
     | {
         _type: "ctaBlock";
@@ -514,7 +549,7 @@ export type HOMEPAGE_QUERY_RESULT = {
         buttons: Array<{
           label: string | null;
           link: {
-            type: "external" | null;
+            type: "anchor" | "external" | null;
             href: string | "#" | null;
             openInNewTab: boolean | null;
           } | null;
@@ -522,6 +557,7 @@ export type HOMEPAGE_QUERY_RESULT = {
           size: "large" | "medium" | "small" | null;
         }> | null;
         alignment: "center" | "left" | "right" | null;
+        sectionId: string | null;
       }
     | {
         _type: "heroBlock";
@@ -550,13 +586,14 @@ export type HOMEPAGE_QUERY_RESULT = {
         buttons: Array<{
           label: string | null;
           link: {
-            type: "external" | null;
+            type: "anchor" | "external" | null;
             href: string | "#" | null;
             openInNewTab: boolean | null;
           } | null;
           style: "ghost" | "link" | "outline" | "primary" | "secondary" | null;
           size: "large" | "medium" | "small" | null;
         }> | null;
+        sectionId: string | null;
       }
     | {
         _type: "mediaBlock";
@@ -593,7 +630,8 @@ export type HOMEPAGE_QUERY_RESULT = {
               markDefs: Array<{
                 _key: string;
                 _type: "link";
-                type: "external" | null;
+                type: "anchor" | "external" | null;
+                anchor?: string;
                 external?: string;
                 openInNewTab: boolean | null;
                 href: string | "#" | null;
@@ -627,7 +665,7 @@ export type HOMEPAGE_QUERY_RESULT = {
         buttons: Array<{
           label: string | null;
           link: {
-            type: "external" | null;
+            type: "anchor" | "external" | null;
             href: string | "#" | null;
             openInNewTab: boolean | null;
           } | null;
@@ -635,6 +673,7 @@ export type HOMEPAGE_QUERY_RESULT = {
           size: "large" | "medium" | "small" | null;
         }> | null;
         alignment: "left" | "right" | null;
+        sectionId: string | null;
       }
     | {
         _type: "mediaGridBlock";
@@ -663,7 +702,7 @@ export type HOMEPAGE_QUERY_RESULT = {
               alt: string | null;
             } | null;
             link: {
-              type: "external" | null;
+              type: "anchor" | "external" | null;
               href: string | "#" | null;
               openInNewTab: boolean | null;
             } | null;
@@ -672,6 +711,7 @@ export type HOMEPAGE_QUERY_RESULT = {
           }> | null;
         } | null;
         columns: 2 | 3 | 4 | null;
+        sectionId: string | null;
       }
   > | null;
   seo: {
@@ -739,6 +779,31 @@ export type SETTINGS_QUERY_RESULT = {
 } | null;
 
 // Source: src/sanity/queries.ts
+// Variable: NAVBAR_QUERY
+// Query: *[_type == "navbar"][0] {    _id,    links[] {      label,      link {          type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab      },    },    button[] {        label,  link {      type,  "href": select(    type == "anchor" => "#" + anchor,    type == "external" => external,    "#"  ),  openInNewTab  },  style,  size    }  }
+export type NAVBAR_QUERY_RESULT = {
+  _id: string;
+  links: Array<{
+    label: string | null;
+    link: {
+      type: "anchor" | "external" | null;
+      href: string | "#" | null;
+      openInNewTab: boolean | null;
+    } | null;
+  }> | null;
+  button: Array<{
+    label: string | null;
+    link: {
+      type: "anchor" | "external" | null;
+      href: string | "#" | null;
+      openInNewTab: boolean | null;
+    } | null;
+    style: "ghost" | "link" | "outline" | "primary" | "secondary" | null;
+    size: "large" | "medium" | "small" | null;
+  }> | null;
+} | null;
+
+// Source: src/sanity/queries.ts
 // Variable: SANITY_IMAGE_TYPE_QUERY
 // Query: *[_type == "homepage"][0] {      pageBuilder[] {        _type == "heroBlock" => {          image {              image {    asset->{      _id,      url,      metadata {        lqip,        dimensions {          width,          height        }      }    },    hotspot,    crop  },  alt          },        },      },    }.pageBuilder[0].image
 export type SANITY_IMAGE_TYPE_QUERY_RESULT = null | {
@@ -764,8 +829,9 @@ export type SANITY_IMAGE_TYPE_QUERY_RESULT = null | {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "homepage"][0] {\n    _id,\n    title,\n    \n  "pageBuilder": pageBuilder[] {\n    _type,\n    _key,\n    \n  _type == "heroBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    }\n  }\n,\n    \n  _type == "mediaBlock" => {\n    eyebrow,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    richTextWithImage[] {\n      \n  ...,\n  _type == "customImage" => {\n    \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n  },\n  markDefs[] {\n    ...,\n    _type == "link" => {\n      \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n    }\n  }\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment\n  }\n,\n    \n  _type == "mediaGridBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    mediaItems {\n      images[] {\n        image {\n          \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n        },\n        link {\n          \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n        },\n        badgeText,\n        badgeVariant\n      }\n    },\n    columns\n  }\n,\n    \n  _type == "ctaBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    richTextCore[] {\n      \n  ...\n\n    },\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment\n  }\n,\n    \n  _type == "cloudBlock" => {\n    logos[] {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n,\n    \n  _type == "caseStudyBlock" => {\n    title,\n    subtitle,\n    projects[] {\n      _key,\n      title,\n      challenge,\n      decisions,\n      technologies[] {\n        _key,\n        name,\n        icon {\n          \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n        }\n      },\n      image {\n        \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n      },\n      link {\n        \n  type,\n  "href": select(\n    type == "internal" => "/" + internal->slug.current,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n      }\n    }\n  }\n\n  }\n,\n    \n  "seo": {\n    "title": coalesce(seoTitle, title, ""),\n    "description": coalesce(seoDescription, ""),\n    "noIndex": noIndex == true\n  },\n  "og": {\n    "title": coalesce(ogTitle, seoTitle, title, ""),\n    "description": coalesce(ogDescription, seoDescription, ""),\n    "image": ogImage {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n': HOMEPAGE_QUERY_RESULT;
+    '\n  *[_type == "homepage"][0] {\n    _id,\n    title,\n    \n  "pageBuilder": pageBuilder[] {\n    _type,\n    _key,\n    \n  _type == "heroBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    sectionId\n  }\n,\n    \n  _type == "mediaBlock" => {\n    eyebrow,\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    richTextWithImage[] {\n      \n  ...,\n  _type == "customImage" => {\n    \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n  },\n  markDefs[] {\n    ...,\n    _type == "link" => {\n      \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n    }\n  }\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment,\n    sectionId\n  }\n,\n    \n  _type == "mediaGridBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    mediaItems {\n      images[] {\n        image {\n          \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n        },\n        link {\n          \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n        },\n        badgeText,\n        badgeVariant\n      }\n    },\n    columns,\n    sectionId\n  }\n,\n    \n  _type == "ctaBlock" => {\n    eyebrow,\n    title,\n    subtitle,\n    richTextCore[] {\n      \n  ...\n\n    },\n    image {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    buttons[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    },\n    alignment,\n    sectionId\n  }\n,\n    \n  _type == "cloudBlock" => {\n    logos[] {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    },\n    sectionId\n  }\n,\n    \n  _type == "caseStudyBlock" => {\n    title,\n    subtitle,\n    projects[] {\n      _key,\n      title,\n      challenge,\n      decisions,\n      technologies[] {\n        _key,\n        name,\n        icon {\n          \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n        }\n      },\n      image {\n        \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n      },\n      link {\n        \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n      }\n    },\n    sectionId\n  }\n\n  }\n,\n    \n  "seo": {\n    "title": coalesce(seoTitle, title, ""),\n    "description": coalesce(seoDescription, ""),\n    "noIndex": noIndex == true\n  },\n  "og": {\n    "title": coalesce(ogTitle, seoTitle, title, ""),\n    "description": coalesce(ogDescription, seoDescription, ""),\n    "image": ogImage {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n': HOMEPAGE_QUERY_RESULT;
     '\n  *[_type == "settings"][0] {\n    _id,\n    siteTitle,\n    \n  "seo": {\n    "title": coalesce(seoTitle, title, ""),\n    "description": coalesce(seoDescription, ""),\n    "noIndex": noIndex == true\n  },\n  "og": {\n    "title": coalesce(ogTitle, seoTitle, title, ""),\n    "description": coalesce(ogDescription, seoDescription, ""),\n    "image": ogImage {\n      \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n    }\n  }\n\n  }\n': SETTINGS_QUERY_RESULT;
+    '\n  *[_type == "navbar"][0] {\n    _id,\n    links[] {\n      label,\n      link {\n        \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n      },\n    },\n    button[] {\n      \n  label,\n  link {\n    \n  type,\n  "href": select(\n    type == "anchor" => "#" + anchor,\n    type == "external" => external,\n    "#"\n  ),\n  openInNewTab\n\n  },\n  style,\n  size\n\n    }\n  }\n': NAVBAR_QUERY_RESULT;
     '\n  *[_type == "homepage"][0] {\n      pageBuilder[] {\n        _type == "heroBlock" => {\n          image {\n            \n  image {\n    asset->{\n      _id,\n      url,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    },\n    hotspot,\n    crop\n  },\n  alt\n\n          },\n        },\n      },\n    }.pageBuilder[0].image\n': SANITY_IMAGE_TYPE_QUERY_RESULT;
   }
 }

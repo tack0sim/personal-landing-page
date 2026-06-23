@@ -1,7 +1,4 @@
-import {
-  CogIcon,
-  HomeIcon,
-} from '@sanity/icons';
+import { CogIcon, HomeIcon, MenuIcon } from '@sanity/icons';
 import type { ComponentType } from 'react';
 import type { StructureBuilder, StructureResolver } from 'sanity/structure';
 
@@ -39,9 +36,9 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
     .items([
       createSingleton(S, 'homepage', 'Homepage', HomeIcon),
       // S.divider(),
-        // createListItem(S, 'page', 'Pages', DocumentsIcon),
-        // createListItem(S, 'artwork', 'Artworks', ImagesIcon),
-        // createListItem(S, 'post', 'Posts', EditIcon),
+      // createListItem(S, 'page', 'Pages', DocumentsIcon),
+      // createListItem(S, 'artwork', 'Artworks', ImagesIcon),
+      // createListItem(S, 'post', 'Posts', EditIcon),
       // S.divider(),
       // createListItem(S, 'category', 'Categories', BookmarkIcon),
       // createListItem(S, 'tag', 'Tags', TagsIcon),
@@ -54,6 +51,7 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
           S.list()
             .title('Site Settings')
             .items([
+              createSingleton(S, 'navbar', 'Navbar', MenuIcon),
               createSingleton(S, 'settings', 'Global Settings', CogIcon),
             ]),
         ),

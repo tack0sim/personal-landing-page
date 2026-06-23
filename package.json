@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "typegen": "sanity schema extract --path=./ && sanity typegen generate"
+    "typegen": "NEXT_PUBLIC_SANITY_PROJECT_ID=y027eigv NEXT_PUBLIC_SANITY_DATASET=production sanity schema extract --path=./ && sanity typegen generate"
   },
   "dependencies": {
     "@sanity/asset-utils": "^2.3.0",
@@ -38,6 +38,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
