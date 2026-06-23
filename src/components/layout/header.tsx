@@ -9,7 +9,7 @@ interface Props {
 
 export function Header({ navbar, siteTitle }: Props) {
   return (
-    <header className="bg-background sticky top-0 z-50 shadow-sm border-b border-border">
+    <header className="hidden md:block bg-background sticky top-0 z-50 shadow-sm border-b border-border">
       <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="scroll-auto">

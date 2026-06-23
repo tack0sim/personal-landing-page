@@ -4,6 +4,7 @@ import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { Footer } from '@/components/layout/footer';
 import { NAVBAR_QUERY, SETTINGS_QUERY } from '@/sanity/queries';
 import { Header } from '@/components/layout/header';
+import { MobileHeader } from '@/components/layout/mobile-header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,6 +36,7 @@ export default async function RootLayout({
       >
         <div className="flex flex-col min-h-dvh">
           <Header navbar={navbar} siteTitle={settings?.siteTitle ?? ''} />
+          <MobileHeader navbar={navbar} siteTitle={settings?.siteTitle ?? ''} />
           <main className="flex flex-col grow">{children}</main>
           <Footer siteTitle={settings?.siteTitle ?? ''} />
           <SanityLive />
