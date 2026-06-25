@@ -12,11 +12,11 @@ export function Container({
   return (
     <div
       className={cn(
-        'mx-auto px-5 md:px-8 lg:px-10',
+        'mx-auto px-5 md:px-8 lg:px-10 w-full ',
         {
-          'w-full max-w-7xl': variant === 'default',
-          'w-full max-w-3xl': variant === 'narrow',
-          'w-full max-w-9xl': variant === 'wide',
+          'max-w-7xl': variant === 'default',
+          'max-w-3xl': variant === 'narrow',
+          'max-w-9xl': variant === 'wide',
         },
         className,
       )}

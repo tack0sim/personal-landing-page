@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import type { NAVBAR_QUERY_RESULT } from '../../../sanity.types';
+import { Container } from '../ui/container';
 
 interface Props {
   navbar: NAVBAR_QUERY_RESULT;
@@ -15,7 +16,7 @@ export function MobileHeader({ navbar, siteTitle }: Props) {
 
   return (
     <header className="md:hidden bg-background sticky top-0 z-50 shadow-sm border-b border-border">
-      <div className="px-4 py-4">
+      <Container className="py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="scroll-auto">
             <h2 className="text-xl font-bold">{siteTitle}</h2>
@@ -85,7 +86,7 @@ export function MobileHeader({ navbar, siteTitle }: Props) {
             )}
           </nav>
         )}
-      </div>
+      </Container>
     </header>
   );
 }

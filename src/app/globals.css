@@ -140,5 +140,6 @@ body {
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 }
