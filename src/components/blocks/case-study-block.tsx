@@ -26,16 +26,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     <motion.article
       {...fadeUp}
       transition={{ duration: 0.8, delay: index * 0.15, ease: 'easeOut' }}
-      className="grid min-h-103.75 grid-cols-1 overflow-hidden rounded-2xl border border-border/50 shadow-sm lg:grid-cols-[2fr_3fr]"
+      className="grid min-h-103.75 grid-cols-1 overflow-hidden rounded-2xl border border-border/50 shadow-sm lg:grid-cols-2"
     >
       <div
         className={cn(
-          'relative aspect-16/10 lg:aspect-auto',
+          'bg-background',
           isOdd && 'lg:order-last',
         )}
       >
         {project.image?.image && (
-          <SanityImage image={project.image} fill className="object-cover" />
+          <SanityImage image={project.image} className="size-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
         )}
       </div>
 
