@@ -39,12 +39,12 @@ export function MediaGridBlock({
   return (
     <Section className="bg-sidebar">
       <Container>
-        <div className="space-y-16">
+        <div className="space-y-8">
           {hasHeader && (
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="space-y-4 max-w-2xl"
+              className="space-y-4"
             >
               {eyebrow && (
                 <p className="text-muted-foreground text-sm font-medium">

@@ -61,7 +61,7 @@ export function CtaBlock({
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="flex flex-col items-center text-center space-y-6 max-w-2xl w-full"
+              className="flex flex-col items-center text-center space-y-4 max-w-2xl w-full"
             >
               {textContent}
             </motion.div>
@@ -93,7 +93,7 @@ export function CtaBlock({
               ease: 'easeOut',
             }}
             className={cn(
-              'space-y-6',
+              'space-y-4',
               isRightAligned
                 ? 'lg:col-span-5 lg:col-start-8 order-2'
                 : 'lg:col-span-5 lg:col-start-1 order-2 lg:order-1',

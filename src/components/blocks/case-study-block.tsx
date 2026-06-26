@@ -125,16 +125,15 @@ export function CaseStudyBlock({
 
   return (
     <Section className="bg-border/10">
-      <Container>
-        <div>
+      <Container className="space-y-8">
           {(title || subtitle) && (
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="max-w-2xl"
+              className="space-y-4"
             >
               {title && (
-                <h2 className="text-2xl md:text-3xl py-4 font-light tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-light tracking-tight">
                   {title}
                 </h2>
               )}
@@ -145,7 +144,6 @@ export function CaseStudyBlock({
           {projects.map((project, index) => (
             <ProjectCard key={project._key} project={project} index={index} />
           ))}
-        </div>
       </Container>
     </Section>
   );
