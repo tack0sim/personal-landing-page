@@ -18,7 +18,7 @@ export function MobileHeader({ navbar, siteTitle }: Props) {
     <header className="md:hidden bg-background sticky top-0 z-50 shadow-sm border-b border-border min-h-20">
       <Container className="py-5">
         <div className="flex items-center justify-between">
-          <Link href="/" className="scroll-auto">
+          <Link href="/" onClick={() => window.scrollTo({ top: 0 })} className="scroll-auto">
             <h2 className="text-xl font-bold">{siteTitle}</h2>
           </Link>
 

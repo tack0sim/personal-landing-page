@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import type { NAVBAR_QUERY_RESULT } from '../../../sanity.types';
@@ -13,7 +15,7 @@ export function Header({ navbar, siteTitle }: Props) {
     <header className="hidden md:block bg-background sticky top-0 z-50 shadow-sm border-b border-border">
       <Container className="py-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="scroll-auto">
+          <Link href="/" onClick={() => window.scrollTo({ top: 0 })} className="scroll-auto">
             <h2 className="text-2xl font-bold">{siteTitle}</h2>
           </Link>
           <nav>
