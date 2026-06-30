@@ -19,15 +19,18 @@ export function MobileHeader({ navbar, siteTitle }: Props) {
       <Container className="py-5">
         <div className="flex items-center justify-between">
           <Link href="/" onClick={() => window.scrollTo({ top: 0 })}>
-            <h2 className="text-xl font-bold">{siteTitle}</h2>
+            <h2 className="text-xl font-bold text-accent-primary">
+              {siteTitle}
+            </h2>
           </Link>
 
           {/* Hamburger Button */}
-          <button
+          <Button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex flex-col gap-1.5 p-2"
+            className="flex flex-col gap-1.5 p-2 aria-expanded:bg-background"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
+            variant="ghost"
           >
             <span
               className={`h-0.5 w-6 bg-foreground transition-all duration-300 ${
@@ -44,7 +47,7 @@ export function MobileHeader({ navbar, siteTitle }: Props) {
                 isMenuOpen ? '-rotate-45 -translate-y-2' : ''
               }`}
             />
-          </button>
+          </Button>
         </div>
 
         {/* Mobile Menu */}
