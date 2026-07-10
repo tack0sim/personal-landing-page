@@ -11,12 +11,12 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
 } from './ui/card';
 import { Button } from './ui/button';
 import { Section } from './ui/section';
 import { Container } from './ui/container';
 import { Textarea } from './ui/textarea';
+import { sendEmail } from '@/actions';
 
 export function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -54,10 +54,8 @@ export function ContactForm() {
     }
   };
 
-  const handleSubmit = (
-    e:
-      | React.SubmitEvent<HTMLFormElement | HTMLButtonElement>
-      | React.MouseEvent<HTMLButtonElement>
+  const handleSubmit = async (
+    e: React.SubmitEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -66,6 +64,8 @@ export function ContactForm() {
 
     setIsSubmitting(true);
     try {
+      await sendEmail(formData);
+
       toast.success('Form submitted successfully!');
       setFormData({ name: '', email: '', message: '' });
       setErrors({});
@@ -136,21 +136,19 @@ export function ContactForm() {
                     <FieldError errors={[{ message: errors.message }]} />
                   )}
                 </Field>
+                <Field orientation="horizontal">
+                  <Button
+                    disabled={isSubmitting}
+                    onClick={handleSubmit}
+                    type="submit"
+                    variant="accent"
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                  </Button>
+                </Field>
               </FieldGroup>
             </form>
           </CardContent>
-          <CardFooter>
-            <Field orientation="horizontal">
-              <Button
-                disabled={isSubmitting}
-                onClick={handleSubmit}
-                type="button"
-                variant="accent"
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </Button>
-            </Field>
-          </CardFooter>
         </Card>
       </Container>
     </Section>
