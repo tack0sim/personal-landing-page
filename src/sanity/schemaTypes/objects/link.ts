@@ -21,7 +21,8 @@ export const link = defineType({
     defineField({
       name: 'anchor',
       type: 'string',
-      description: 'Enter the anchor link without "#" (e.g., section-id)',
+      description:
+        'Enter the anchor id without "#" (e.g., section-id). Exception: For contact form, use "contact-form".',
       hidden: ({ parent }) => parent?.type !== 'anchor',
     }),
     defineField({

@@ -20,87 +20,86 @@ export function HeroBlock({
   return (
     <Section>
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+        <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2 lg:gap-32">
           {/* Text Content */}
           <motion.div
-            className="order-2 lg:order-1 space-y-12"
-            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            className="order-2 space-y-12 lg:order-1"
+            initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <div className="space-y-6">
               {eyebrow && (
-                <p className="text-muted-foreground text-sm font-medium">
+                <p className="font-medium text-muted-foreground text-sm">
                   {eyebrow}
                 </p>
               )}
               {title && (
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.15] text-balance">
+                <h1 className="text-balance font-light text-4xl leading-[1.15] tracking-tight md:text-5xl lg:text-6xl">
                   {title}
                 </h1>
               )}
             </div>
 
             {subtitle && (
-              <p className="text-muted-foreground text-lg leading-[1.8] max-w-md">
+              <p className="max-w-md text-lg text-muted-foreground leading-[1.8]">
                 {subtitle}
               </p>
             )}
 
             <div className="flex flex-wrap gap-3">
-              {buttons?.map((button) => (
-                <Button
-                  key={button.label}
-                  size={
-                    button.size === 'large'
-                      ? 'lg'
-                      : button.size === 'medium'
-                        ? 'sm'
-                        : 'xs'
-                  }
-                  variant={
-                    button.style === 'primary'
-                      ? 'accent'
-                      : button.style === 'outline'
-                        ? 'outline'
-                        : button.style === 'secondary'
-                          ? 'secondary'
-                          : button.style === 'ghost'
-                            ? 'ghost'
-                            : 'link'
-                  }
-                  className="gap-2"
-                >
-                  <Link
-                    href={button.link?.href ?? '#'}
-                    target={button.link?.openInNewTab ? '_blank' : '_self'}
-                    rel="noopener noreferrer"
-                    className="flex justify-center items-center gap-2"
-                  >
-                    {button.label === 'LinkedIn' ? (
-                      <LinkedinIcon className="w-4 h-4" />
-                    ) : button.label === 'GitHub' ? (
-                      <Github className="w-4 h-4" />
-                    ) : null}
-                    {button.label}
-                  </Link>
-                </Button>
-              ))}
+              {buttons?.map((button) => {
+                const buttonSize =
+                  button.size === 'large'
+                    ? 'lg'
+                    : button.size === 'medium'
+                      ? 'sm'
+                      : 'xs';
 
-              <Button variant="ghost" size="lg" asChild>
-                <a href="mailto:talhamjd@gmail.com">Get in Touch</a>
-              </Button>
+                const buttonVariant =
+                  button.style === 'primary'
+                    ? 'accent'
+                    : button.style === 'outline'
+                      ? 'outline'
+                      : button.style === 'secondary'
+                        ? 'secondary'
+                        : button.style === 'ghost'
+                          ? 'ghost'
+                          : 'link';
+                return (
+                  <Button
+                    className="gap-2"
+                    key={button.label}
+                    size={buttonSize}
+                    variant={buttonVariant}
+                  >
+                    <Link
+                      className="flex items-center justify-center gap-2"
+                      href={button.link?.href ?? '#'}
+                      rel="noopener noreferrer"
+                      target={button.link?.openInNewTab ? '_blank' : '_self'}
+                    >
+                      {button.label === 'LinkedIn' ? (
+                        <LinkedinIcon className="h-4 w-4" />
+                      ) : button.label === 'GitHub' ? (
+                        <Github className="h-4 w-4" />
+                      ) : null}
+                      {button.label}
+                    </Link>
+                  </Button>
+                );
+              })}
             </div>
           </motion.div>
 
           {/* Image */}
           <motion.div
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            className="order-1 flex justify-center lg:order-2 lg:justify-end"
+            initial={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
-            <div className="relative w-64 h-80 md:w-80 md:h-96 rounded-lg overflow-hidden bg-muted">
+            <div className="relative h-80 w-64 overflow-hidden rounded-lg bg-muted md:h-96 md:w-80">
               {image && <SanityImage image={image} />}
             </div>
           </motion.div>

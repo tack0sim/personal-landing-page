@@ -79,7 +79,7 @@ export function ContactForm() {
   };
 
   return (
-    <Section>
+    <Section id="contact-form">
       <Container variant="narrow">
         <Card className="w-full sm:max-w-none">
           <CardHeader>
