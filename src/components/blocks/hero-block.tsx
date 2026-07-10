@@ -67,17 +67,17 @@ export function HeroBlock({
                           ? 'ghost'
                           : 'link';
                 return (
-                  <Button
-                    className="gap-2"
+                  <Link
+                    className="flex items-center justify-center gap-2"
+                    href={button.link?.href ?? '#'}
                     key={button.label}
-                    size={buttonSize}
-                    variant={buttonVariant}
+                    rel="noopener noreferrer"
+                    target={button.link?.openInNewTab ? '_blank' : '_self'}
                   >
-                    <Link
-                      className="flex items-center justify-center gap-2"
-                      href={button.link?.href ?? '#'}
-                      rel="noopener noreferrer"
-                      target={button.link?.openInNewTab ? '_blank' : '_self'}
+                    <Button
+                      className="gap-2"
+                      size={buttonSize}
+                      variant={buttonVariant}
                     >
                       {button.label === 'LinkedIn' ? (
                         <LinkedinIcon className="h-4 w-4" />
@@ -85,8 +85,8 @@ export function HeroBlock({
                         <Github className="h-4 w-4" />
                       ) : null}
                       {button.label}
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 );
               })}
             </div>

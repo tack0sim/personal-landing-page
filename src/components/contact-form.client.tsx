@@ -81,7 +81,7 @@ export function ContactForm() {
   return (
     <Section id="contact-form">
       <Container variant="narrow">
-        <Card className="w-full sm:max-w-none">
+        <Card className="w-full max-w-none shadow-lg">
           <CardHeader>
             <CardTitle>Get in touch</CardTitle>
             <CardDescription>
