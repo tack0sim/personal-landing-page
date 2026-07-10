@@ -1,3 +1,4 @@
+import { ContactForm } from '@/components/contact-form.client';
 import { PageBuilder } from '@/components/pagebuilder';
 import { resolveImageDimensions, urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
@@ -16,7 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
     stega: false,
   });
 
-  if (!metadata || !settings) return {};
+  if (!(metadata && settings)) {
+    return {};
+  }
 
   const title = metadata?.title
     ? `${metadata.title} | ${settings.siteTitle}`
@@ -57,7 +60,14 @@ export default async function HomePage() {
     query: HOMEPAGE_QUERY,
   });
 
-  if (!data) return notFound();
+  if (!data) {
+    return notFound();
+  }
 
-  return <PageBuilder blocks={data.pageBuilder} />;
+  return (
+    <>
+      <PageBuilder blocks={data.pageBuilder} />
+      <ContactForm />
+    </>
+  );
 }

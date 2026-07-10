@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/footer';
 import { NAVBAR_QUERY, SETTINGS_QUERY } from '@/sanity/queries';
 import { Header } from '@/components/layout/header';
 import { MobileHeader } from '@/components/layout/mobile-header';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,10 +35,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col min-h-dvh">
+        <div className="flex min-h-dvh flex-col">
           <Header navbar={navbar} siteTitle={settings?.siteTitle ?? ''} />
           <MobileHeader navbar={navbar} siteTitle={settings?.siteTitle ?? ''} />
-          <main className="flex flex-col grow">{children}</main>
+          <main className="flex grow flex-col">{children}</main>
+          <Toaster position="bottom-center" />
           <Footer siteTitle={settings?.siteTitle ?? ''} />
           <SanityLive />
         </div>
