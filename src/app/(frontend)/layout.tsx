@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
-import { sanityFetch } from '@/sanity/lib/live';
+import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { Footer } from '@/components/layout/footer';
 import { NAVBAR_QUERY, SETTINGS_QUERY } from '@/sanity/queries';
 import { Header } from '@/components/layout/header';
@@ -41,6 +41,7 @@ export default async function RootLayout({
           <main className="flex grow flex-col">{children}</main>
           <Toaster position="bottom-center" />
           <Footer siteTitle={settings?.siteTitle ?? ''} />
+          <SanityLive />
         </div>
       </body>
     </html>
