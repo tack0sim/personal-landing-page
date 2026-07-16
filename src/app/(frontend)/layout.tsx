@@ -41,7 +41,7 @@ export default async function RootLayout({
           <main className="flex grow flex-col">{children}</main>
           <Toaster position="bottom-center" />
           <Footer siteTitle={settings?.siteTitle ?? ''} />
-          <SanityLive />
+          <SanityLive waitFor="function" />
         </div>
       </body>
     </html>
