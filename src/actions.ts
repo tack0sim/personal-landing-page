@@ -2,6 +2,7 @@
 
 import { Resend } from 'resend';
 import { type ContactFormData, contactFormSchema } from './lib/form';
+import { Email } from '../emails/email';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -20,10 +21,7 @@ export async function sendEmail(formData: ContactFormData) {
       to: process.env.RESEND_TO_EMAIL as string,
       replyTo: email,
       subject: `New message from ${name} - Personal Landing Page`,
-      html: `<h1>New message from ${name}</h1>
-             <p><strong>Email:</strong> ${email}</p>
-             <p><strong>Message:</strong></p>
-             <p>${message}</p>`,
+      react: Email({ name, email, message }),
     });
   } catch (error) {
     if (error instanceof Error) {

@@ -127,6 +127,7 @@ export function ContactForm() {
                   <Textarea
                     aria-invalid={!!errors.message}
                     autoComplete="off"
+                    className="whitespace-pre-line"
                     id="message"
                     onChange={(e) => handleChange('message', e.target.value)}
                     placeholder="Your message"
