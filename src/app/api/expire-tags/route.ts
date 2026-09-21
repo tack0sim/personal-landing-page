@@ -34,9 +34,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No tags provided' }, { status: 400 });
     }
 
-    // Revalidate each tag with "max" to prevent cascading requests
+    // Revalidate each tag with expire: 0 for immediate cache expiration
     tags.forEach((tag: string) => {
-      revalidateTag(tag, 'max');
+      revalidateTag(`sanity:${tag}`, {expire: 0});
     });
 
     console.log(`✓ Revalidated tags: ${tags.join(', ')}`);

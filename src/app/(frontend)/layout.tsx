@@ -22,6 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isProduction = process.env.VERCEL_ENV === 'production';
   const [{ data: settings }, { data: navbar }] = await Promise.all([
     sanityFetch({
       query: SETTINGS_QUERY,
@@ -41,7 +42,7 @@ export default async function RootLayout({
           <main className="flex grow flex-col">{children}</main>
           <Toaster position="bottom-center" />
           <Footer siteTitle={settings?.siteTitle ?? ''} />
-          <SanityLive />
+          <SanityLive waitFor={isProduction ? 'function' : undefined} />
         </div>
       </body>
     </html>
