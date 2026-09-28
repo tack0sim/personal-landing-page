@@ -83,7 +83,7 @@ export function MediaGridBlock({
                         />
                         {item.badgeText && (
                           <Badge
-                            variant={item.badgeVariant}
+                            variant={stegaClean(item.badgeVariant)}
                             className="absolute bottom-4 left-4 font-medium"
                           >
                             {item.badgeText}
@@ -102,7 +102,7 @@ export function MediaGridBlock({
                       />
                       {item.badgeText && (
                         <Badge
-                          variant={item.badgeVariant}
+                          variant={stegaClean(item.badgeVariant)}
                           className="absolute bottom-4 left-4 font-medium"
                         >
                           {item.badgeText}

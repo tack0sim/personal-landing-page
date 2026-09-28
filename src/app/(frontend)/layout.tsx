@@ -6,6 +6,9 @@ import { NAVBAR_QUERY, SETTINGS_QUERY } from '@/sanity/queries';
 import { Header } from '@/components/layout/header';
 import { MobileHeader } from '@/components/layout/mobile-header';
 import { Toaster } from 'sonner';
+import { draftMode } from 'next/headers';
+import { VisualEditing } from 'next-sanity/visual-editing';
+import { DraftModeBanner } from '@/components/layout/draft-mode-banner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,6 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isProduction = process.env.VERCEL_ENV === 'production';
+  const isDraftMode = (await draftMode()).isEnabled;
   const [{ data: settings }, { data: navbar }] = await Promise.all([
     sanityFetch({
       query: SETTINGS_QUERY,
@@ -43,6 +47,12 @@ export default async function RootLayout({
           <Toaster position="bottom-center" />
           <Footer siteTitle={settings?.siteTitle ?? ''} />
           <SanityLive waitFor={isProduction ? 'function' : undefined} />
+          {isDraftMode && (
+            <>
+              <VisualEditing />
+              <DraftModeBanner />
+            </>
+          )}
         </div>
       </body>
     </html>

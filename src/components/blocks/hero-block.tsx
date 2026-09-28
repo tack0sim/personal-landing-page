@@ -3,6 +3,7 @@
 import type { PageBuilderBlockType } from '@/types';
 import { Github } from 'lucide-react';
 import { LinkedinIcon } from '@sanity/icons';
+import { stegaClean } from 'next-sanity';
 import { SanityImage } from '../sanity-image';
 import { Section } from '../ui/section';
 import { Button } from '../ui/button';
@@ -49,23 +50,21 @@ export function HeroBlock({
 
             <div className="flex flex-wrap gap-3">
               {buttons?.map((button) => {
-                const buttonSize =
-                  button.size === 'large'
-                    ? 'lg'
-                    : button.size === 'medium'
-                      ? 'sm'
-                      : 'xs';
+                const style = stegaClean(button.style);
+                const size = stegaClean(button.size);
 
-                const buttonVariant =
-                  button.style === 'primary'
-                    ? 'accent'
-                    : button.style === 'outline'
-                      ? 'outline'
-                      : button.style === 'secondary'
-                        ? 'secondary'
-                        : button.style === 'ghost'
-                          ? 'ghost'
-                          : 'link';
+                const variant =
+                  style === 'primary' ? 'accent'
+                  : style === 'outline' ? 'outline'
+                  : style === 'secondary' ? 'secondary'
+                  : style === 'ghost' ? 'ghost'
+                  : 'link';
+
+                const btnSize =
+                  size === 'large' ? 'lg'
+                  : size === 'medium' ? 'sm'
+                  : 'xs';
+
                 return (
                   <Link
                     className="flex items-center justify-center gap-2"
@@ -76,8 +75,8 @@ export function HeroBlock({
                   >
                     <Button
                       className="gap-2"
-                      size={buttonSize}
-                      variant={buttonVariant}
+                      size={btnSize}
+                      variant={variant}
                     >
                       {button.label === 'LinkedIn' ? (
                         <LinkedinIcon className="h-4 w-4" />
