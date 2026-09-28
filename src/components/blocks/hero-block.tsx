@@ -58,7 +58,7 @@ export function HeroBlock({
                   : style === 'outline' ? 'outline'
                   : style === 'secondary' ? 'secondary'
                   : style === 'ghost' ? 'ghost'
-                  : 'link';
+                  : 'accent';
 
                 const btnSize =
                   size === 'large' ? 'lg'
