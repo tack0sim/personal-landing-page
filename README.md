@@ -1,6 +1,12 @@
 # Personal Landing Page
 
-A content-driven personal landing page built with **Next.js 16**, **Sanity v5**, and **Tailwind CSS v4**. The Studio runs embedded at `/studio`, so content and code live in the same repository.
+[![Version 1.2.0](https://img.shields.io/badge/version-v1.2.0-blue?style=flat)](./package.json)
+[![Sanity v6](https://img.shields.io/badge/sanity-v6-brightgreen?style=flat)]()
+[![Node.js: 24+](https://img.shields.io/badge/node.js-24+-green)](./.nvmrc)
+[![TypeScript](https://img.shields.io/badge/typescript-strict-blue)]()
+[![Next.js 16](https://img.shields.io/badge/next.js-16-black)]()
+
+A content-driven personal landing page built with **Next.js v16**, **Sanity v6**, and **Tailwind CSS v4**. The Studio runs embedded at `/studio`, so content and code live in the same repository.
 
 ---
 
@@ -8,8 +14,8 @@ A content-driven personal landing page built with **Next.js 16**, **Sanity v5**,
 
 | Layer | Technology |
 | --- | --- |
-| Framework | Next.js 16 (App Router) + React 19 |
-| CMS | Sanity v5 + next-sanity (Live Content API) |
+| Framework | Next.js v16 (App Router) + React 19 |
+| CMS | Sanity v6 + next-sanity (Live Content API) |
 | Styling | Tailwind CSS v4 + Radix UI + CVA |
 | Animation | Framer Motion |
 | Linting / Formatting | Biome |
@@ -47,6 +53,10 @@ Queries are built from small, reusable fragments (`customImageFragment`, `button
 
 `sanityFetch` from `next-sanity/live` keeps page data automatically updated without polling. `<SanityLive />` is rendered once in the root layout, enabling instant preview and published-content streaming.
 
+### Visual Editing
+
+The embedded Sanity Studio allows for real-time visual editing of content, leveraging Next.js's draftMode feature. This 
+enables content teams to preview content edits in a live preview environment before publishing them.
 ---
 
 ## Project Structure
@@ -88,6 +98,9 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=
 NEXT_PUBLIC_SANITY_API_VERSION=
 SANITY_API_READ_TOKEN=
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
+RESEND_TO_EMAIL=
 ```
 
 ### Development
